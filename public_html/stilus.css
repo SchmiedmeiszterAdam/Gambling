@@ -1,0 +1,97 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: darkgray;
+}
+main{
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+    "n"
+    "j"
+    "f";
+}
+
+
+
+/*Játékok*/
+#jatekok{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    grid-area: j;
+    max-width: 100vw;
+}
+.jatek{
+    min-width: 130px;
+    flex: calc(25% -20px);
+    text-align: center;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px;
+    background: chartreuse;
+}
+
+/*Navigáció*/
+nav{
+    height: 10vh;
+    grid-area: "n";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+nav>ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 30vw;
+}
+nav>ul>li{
+    list-style-type: none;
+}
+nav>ul a{
+    text-decoration: none;
+}
+#ul-1{
+    max-width: 300px;
+}
+#ul-2{
+    max-width: 200px;
+    padding-right: 4vw;
+}
+
+@media screen and (max-width:400px){
+    nav{
+        justify-content: space-around;
+    }
+    #ul-1{
+        min-width: 50%;
+    }
+    #ul-2{
+        min-width: 50%;
+    }
+}
+@media screen and (max-width:280px){
+    nav{
+        flex-direction: column;
+    }
+    nav>ul{
+        flex-direction: column;
+    }
+    #ul-2{
+        padding-right: 0;
+    }
+}
