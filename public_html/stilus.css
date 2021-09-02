@@ -32,7 +32,7 @@ main{
 }
 .jatek{
     min-width: 130px;
-    flex: calc(25% -20px);
+    flex: calc(25% - 20px);
     text-align: center;
     min-height: 280px;
     display: flex;
