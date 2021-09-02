@@ -1,0 +1,44 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: darkgray;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+}
+#kartya{
+    width: 40vw;
+    height: 80vh;
+    background: pink;
+}
+#gep{
+    width: 30vw;
+    height: 60vh;
+    background: green;
+}
+#szamok{
+    height: 75vh;
+    width: 40vw;
+}
+nav{
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+li{
+    list-style-type: none;
+}
+li a{
+    text-decoration: none;
+    color: black;
+}
