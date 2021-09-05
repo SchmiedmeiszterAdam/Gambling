@@ -1,17 +1,27 @@
-var jatekos_szamjai = []
-var b_oszlop = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-var i_oszlop = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
-var n_oszlop = [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
-var g_oszlop = [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
-var o_oszlop = [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75]
+var jatekos_szamjai = [];
+var b_oszlop = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+var i_oszlop = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+var n_oszlop = [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45];
+var g_oszlop = [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60];
+var o_oszlop = [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75];
 
-var jatekos_tomb_szamlalo = 0
+var osszes_szam = [];
+var szam_mennyiseg = 75;
+
+var nyert;
+var szam;
+var szam2;
+var jatekos_tomb_szamlalo;
 $(function () {
-    jatek_kezdes();
+    jatek_elkezdese();
+    $("#kezd").click(jatek_elkezdese);
+    $("td").click(ellenorzes);
+    $("#igen").click(ujJatek);
 });
 
-
 function jatek_kezdes() {
+    jatekos_tomb_szamlalo = 0;
+    jatekos_szamjai = []
     keveres(b_oszlop);
     keveres(i_oszlop);
     keveres(n_oszlop);
@@ -37,55 +47,82 @@ function jatek_kezdes() {
         jatekos_szamjai[jatekos_tomb_szamlalo] = o_oszlop[i];
         jatekos_tomb_szamlalo++;
     }
-    szamgeneralas();
+    tablazatLetrehozas();
 }
 
 
 
+function jatek_elkezdese(){
+    osszes_szam_feltoltes();
+    jatek_kezdes();    
+    jatek();
+}
 
-
-function szamgeneralas() {
-    console.log(jatekos_szamjai);
-    var seged = 0;
+function tablazatLetrehozas() {
     $("table").empty();
     var index = 0;
+    for (var i = 0; i < 5; i++) {
+        $("table").append("<tr>");
+    }
     for (let i = 0; i < jatekos_szamjai.length; i++) {
-        if (i % 5 === 0) {
-            index++;
-            $("table").append("<tr>");
+        if (index % 5 === 0) {
+            index = 0;
         }
-        $("table tr").eq(index).append("<td>" + jatekos_szamjai[seged] + "</td>");
-        console.log(i);
-        if (seged === 20) {
-            seged = 1;
-        }
-        else if (seged === 21) {
-            seged = 2;
-        }
-        else if (seged === 22) {
-            seged = 3;
-        }
-        else if (seged === 23) {
-            seged = 4;
-        }
-        else if (seged === 24) {
-            seged = 5;
-        }
-        else {
-            seged += 5;
-        }
-        
+        $("table tr").eq(index).append("<td id = "+ i +">" + jatekos_szamjai[i] + "</td>");
+        index++;
     }
 }
 
+function ellenorzes(){
+    var index = this.id;
+    var ertek = jatekos_szamjai[index];    
+    console.log(ertek,index,szam2);
+    if(szam2 !== ertek){
+        alert("Nem jó");
+    }
+    else{
+        $(this).addClass("volt");
+    }
+    if(szamol() === 1){
+        setTimeout(function () {
+            alert("Nyertél");
+            uj();
+          }, 100);
+          nyert = true;
+    }
+    if(osszes_szam.length === 0){
+        alert("Vesztettél")
+    }
+}
+function szamgeneralas(){
+    if(!nyert){
+        szam = Math.floor(Math.random() * szam_mennyiseg);
+        szam2 = osszes_szam[szam];
+        $("#szam-megjelenito").text(osszes_szam [szam]);
+        osszes_szam.splice(szam,1);
+        szam_mennyiseg--;
+    }
+        
+}
+function jatek(){ 
+    setInterval(szamgeneralas,4000);
+}
+
+function szamol(){
+    var db = $(".volt").length;
+    return db;
+}
 
 
-
-
-
-
-
-
+function osszes_szam_feltoltes(){
+    osszes_szam = [];
+    for (let i = 1; i < 76; i++) {
+        osszes_szam [i-1] = i;
+    }
+}
+function uj(){
+    $("#ujrakezdes").css("display","flex");
+}
 
 function keveres(tomb) {
     var currentIndex = tomb.length, randomIndex;
@@ -100,4 +137,10 @@ function keveres(tomb) {
     }
 
     return tomb;
+}
+function ujJatek(){
+    $("#ujrakezdes").css("display","none");
+    nyert = false;
+    jatekos_tomb_szamlalo = 0;
+    jatek_elkezdese();
 }
