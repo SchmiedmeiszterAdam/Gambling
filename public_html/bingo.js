@@ -7,6 +7,9 @@ var o_oszlop = [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75];
 
 var osszes_szam = [];
 var szam_mennyiseg = 75;
+var szerepelt_szamok = []
+var i =0;
+var jo = false;
 
 var nyert;
 var szam;
@@ -77,13 +80,21 @@ function ellenorzes(){
     var index = this.id;
     var ertek = jatekos_szamjai[index];    
     console.log(ertek,index,szam2);
-    if(szam2 !== ertek){
-        alert("Nem jó");
+    for (let i = 0; i < szerepelt_szamok.length; i++) {
+        console.log(szerepelt_szamok[i]);
+        if(ertek === szerepelt_szamok[i]){
+            $(this).addClass("volt");
+            jo = true;
+        }
     }
-    else{
-        $(this).addClass("volt");
+    if(szam2 !== ertek && !jo){
+        $("td").css("border","1px solid red");
     }
-    if(szamol() === 1){
+    setTimeout(function () {
+        $("td").css("border","1px solid black");
+      }, 2000);
+    jo = false;
+    if(szamol() === 25){
         setTimeout(function () {
             alert("Nyertél");
             uj();
@@ -98,9 +109,11 @@ function szamgeneralas(){
     if(!nyert){
         szam = Math.floor(Math.random() * szam_mennyiseg);
         szam2 = osszes_szam[szam];
+        szerepelt_szamok[i] = szam2;
         $("#szam-megjelenito").text(osszes_szam [szam]);
         osszes_szam.splice(szam,1);
         szam_mennyiseg--;
+        i++;
     }
         
 }
