@@ -7,7 +7,10 @@
     padding: 0;
 }
 body{
-    background: darkgray;
+    background: url(kepek/hatter.jpg);
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important; 
 }
 main{
     width: 100%;
@@ -40,9 +43,40 @@ main{
     justify-content: center;
     cursor: pointer;
     margin: 10px;
-    background: chartreuse;
+    background: chartreuse;    
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;    
+    font-weight: bold;
 }
-
+#bingo{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/bingo.png);
+}
+#rulett{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/roulette.png);
+}
+#rablo{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/felkaru.jpg);
+}
+#orosz-rulett,#itt-a-piros,#rulett,#rablo,#poker,#black-jack,#bingo{
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+#poker{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/poker.jpg);
+}
+#black-jack{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/blackjack.jpg);
+}
+#orosz-rulett{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/orosz-roulette.jpg);
+}
+#itt-a-piros{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/piros.jpg);    
+    font-weight: bold;
+}
 /*Navigáció*/
 nav{
     height: 10vh;
