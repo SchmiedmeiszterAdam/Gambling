@@ -10,6 +10,7 @@ var szam_mennyiseg = 75;
 var szerepelt_szamok = []
 var i =0;
 var jo = false;
+var sebesseg = 4000; 
 
 var nyert;
 var szam;
@@ -60,6 +61,8 @@ function jatekElkezdese(){
     $("#kezd").click(jatekElkezdese);    
     $("#igen").click(ujJatek);
     $("td").click(ellenorzes);
+    $("#fel-nyil").click(sebessegNoveles);
+    $("#le-nyil").click(sebessegCsokkentes);
 }
 
 function tablazatLetrehozas() {
@@ -93,7 +96,7 @@ function ellenorzes(){
         $("td").css("border","1px solid black");
       }, 2000);
     jo = false;
-    if(szamol() === 1){
+    if(szamol() === 25){
         setTimeout(function () {
             alert("Nyertél");
             uj();
@@ -115,11 +118,10 @@ function RandomSzamGeneralas(){
         szam_mennyiseg--;
         i++;
     }
-
-        
+    console.log(sebesseg)        
 }
 function idozito(){
-    generalas = setInterval(RandomSzamGeneralas,4000);
+    generalas = setInterval(RandomSzamGeneralas,sebesseg);
 }
 function idozitoMegallitas(){
     clearInterval(generalas);
@@ -163,4 +165,21 @@ function ujJatek(){
     jatekos_tomb_szamlalo = 0;
     idozitoMegallitas();
     jatekElkezdese();
+}
+
+function sebessegNoveles(){
+    if(sebesseg > 2000){
+        sebesseg -= 500;
+        idozitoMegallitas();
+        idozito();
+    }
+    console.log(sebesseg);
+}
+function sebessegCsokkentes(){
+    if(sebesseg < 8000){
+        sebesseg += 500;
+        idozitoMegallitas();
+        idozito();
+    }
+    console.log(sebesseg);
 }

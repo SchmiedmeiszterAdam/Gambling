@@ -15,6 +15,7 @@ main{
     align-items: center;
     justify-content: space-around;
     height: 100vh;
+    max-height: 100vh;
 }
 #kartya{
     width: 40vw;
@@ -33,7 +34,7 @@ main{
 nav{
     position: absolute;
     top: 20px;
-    left: 40px;
+    left: 50;
 }
 li{
     list-style-type: none;
@@ -61,6 +62,14 @@ tr{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+#jatekTer{
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 #szam-megjelenito{
     font-size: 3rem;
@@ -88,6 +97,35 @@ tr{
     text-align: center;
     color: white;
 }
+#fel-nyil{
+    top: 20%;
+    left: calc(50% - 15px);
+    transform: rotate(-90deg);
+}
+#le-nyil{
+    bottom: 20%;
+    left: calc(50% - 15px);
+    transform: rotate(90deg);
+}
+.nyil{
+    position: absolute;
+    background: url(kepek/nyil.jpg);
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border: 2px solid;
+}
+#sebesseg-valtoztato{
+    position: absolute;
+    display: flex;
+    height: 20vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
 @media screen and (max-width: 550px){
     main{
         flex-direction: column;
@@ -110,6 +148,22 @@ tr{
     }
     #igen,#nem{
         font-size: 15vw;
+    }
+    #jatekTer{
+        height: 100%;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    #fel-nyil{
+        top: 5px;
+        left: calc(50% - 15px);
+    }
+    #le-nyil{
+        bottom: 5px;
+        left: calc(50% - 15px);
     }
 }
 @media screen and (max-width: 350px){
