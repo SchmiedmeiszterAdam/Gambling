@@ -15,14 +15,12 @@ var nyert;
 var szam;
 var szam2;
 var jatekos_tomb_szamlalo;
+var generalas;
 $(function () {
-    jatek_elkezdese();
-    $("#kezd").click(jatek_elkezdese);
-    $("td").click(ellenorzes);
-    $("#igen").click(ujJatek);
+    jatekElkezdese();    
 });
 
-function jatek_kezdes() {
+function szamKiosztas() {
     jatekos_tomb_szamlalo = 0;
     jatekos_szamjai = []
     keveres(b_oszlop);
@@ -50,15 +48,18 @@ function jatek_kezdes() {
         jatekos_szamjai[jatekos_tomb_szamlalo] = o_oszlop[i];
         jatekos_tomb_szamlalo++;
     }
-    tablazatLetrehozas();
 }
 
 
 
-function jatek_elkezdese(){
-    osszes_szam_feltoltes();
-    jatek_kezdes();    
-    jatek();
+function jatekElkezdese(){    
+    szamKiosztas();
+    tablazatLetrehozas();    
+    osszesSzamFeltoltes();
+    idozito();
+    $("#kezd").click(jatekElkezdese);    
+    $("#igen").click(ujJatek);
+    $("td").click(ellenorzes);
 }
 
 function tablazatLetrehozas() {
@@ -73,15 +74,13 @@ function tablazatLetrehozas() {
         }
         $("table tr").eq(index).append("<td id = "+ i +">" + jatekos_szamjai[i] + "</td>");
         index++;
-    }
+    }    
 }
 
 function ellenorzes(){
     var index = this.id;
-    var ertek = jatekos_szamjai[index];    
-    console.log(ertek,index,szam2);
+    var ertek = jatekos_szamjai[index];
     for (let i = 0; i < szerepelt_szamok.length; i++) {
-        console.log(szerepelt_szamok[i]);
         if(ertek === szerepelt_szamok[i]){
             $(this).addClass("volt");
             jo = true;
@@ -94,18 +93,19 @@ function ellenorzes(){
         $("td").css("border","1px solid black");
       }, 2000);
     jo = false;
-    if(szamol() === 25){
+    if(szamol() === 1){
         setTimeout(function () {
             alert("Nyertél");
             uj();
           }, 100);
           nyert = true;
+          idozitoMegallitas();
     }
     if(osszes_szam.length === 0){
         alert("Vesztettél")
     }
 }
-function szamgeneralas(){
+function RandomSzamGeneralas(){
     if(!nyert){
         szam = Math.floor(Math.random() * szam_mennyiseg);
         szam2 = osszes_szam[szam];
@@ -115,10 +115,14 @@ function szamgeneralas(){
         szam_mennyiseg--;
         i++;
     }
+
         
 }
-function jatek(){ 
-    setInterval(szamgeneralas,4000);
+function idozito(){
+    generalas = setInterval(RandomSzamGeneralas,4000);
+}
+function idozitoMegallitas(){
+    clearInterval(generalas);
 }
 
 function szamol(){
@@ -127,11 +131,12 @@ function szamol(){
 }
 
 
-function osszes_szam_feltoltes(){
+function osszesSzamFeltoltes(){
     osszes_szam = [];
     for (let i = 1; i < 76; i++) {
         osszes_szam [i-1] = i;
     }
+    szerepelt_szamok = [];
 }
 function uj(){
     $("#ujrakezdes").css("display","flex");
@@ -153,7 +158,9 @@ function keveres(tomb) {
 }
 function ujJatek(){
     $("#ujrakezdes").css("display","none");
+    $("#szam-megjelenito").text("");
     nyert = false;
     jatekos_tomb_szamlalo = 0;
-    jatek_elkezdese();
+    idozitoMegallitas();
+    jatekElkezdese();
 }

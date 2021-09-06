@@ -8,9 +8,7 @@
 }
 body{
     background: url(kepek/hatter.jpg);
-    background-position: center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important; 
+    background-attachment: fixed;
 }
 main{
     width: 100%;
@@ -22,7 +20,11 @@ main{
     "f";
 }
 
-
+.jatek,body{    
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important; 
+}
 
 /*Játékok*/
 #jatekok{
@@ -42,11 +44,7 @@ main{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin: 10px;
-    background: chartreuse;    
-    background-position: center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;    
+    margin: 10px;   
     font-weight: bold;
 }
 #bingo{
