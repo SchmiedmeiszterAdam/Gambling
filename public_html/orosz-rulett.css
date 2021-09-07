@@ -21,7 +21,7 @@ main{
 }
 #fegyver{
     width: 100%;
-    max-width: 50vw;
+    max-width: 45vw;
     min-width: 30vw;
     max-height: 100vh;
     aspect-ratio: 1/1;
@@ -33,47 +33,54 @@ main{
 .forog{
     animation: forgatas 1.5s forwards;
 }
+.kicsit-forgat{
+    animation: fegyver-forgatasa-egy-ponttal 1s forwards;
+}
 .lyuk{
     width: 18%;
     height: 18%;
     border-radius: 50%;
     background-color: white;
     position: absolute;
+    top:calc(50% - 9%);
+    left: calc(50% - 9%);
 }
 .pici-lyuk{
-    width: 40px;
-    height: 40px;
+    width: 6%;
+    height: 6%;
     border-radius: 50%;
     background-color: gray;
     position: absolute;
 }
 #lyuk-1{
-    top: 10%;
-    left: calc(50% - 9%);
+    transform: rotate(-90deg) translate(176.3%);
+    z-index: 20;
+}
+.loszer-megjelenit{
+    background: url(kepek/loszer.jpg) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    animation: loszer-behelyez 1s forwards !important;
 }
 #lyuk-2{
-    bottom: 10%;
-    left: calc(50% - 9%);
+    transform:rotate(30deg) translate(176.3%);
 }
 #lyuk-3{
-    top: 25%;
-    left: 70%;
+    transform: rotate(-30deg) translate(176.3%);
 }
 #lyuk-4{
-    bottom: 25%;
-    left: 70%;
+    transform: rotate(90deg) translate(176.3%);
 }
 #lyuk-5{
-    bottom: 25%;
-    right: 70%;
+    transform: rotate(150deg) translate(176.3%); 
 }
 #lyuk-6{
-    top: 25%;
-    right: 70%;
+    transform: rotate(210deg) translate(176.3%);
 }
 #lyuk-7{
-    bottom: calc(50% - 20px);
-    left: calc(50% - 20px);
+    bottom: calc(50% - 3%);
+    left: calc(50% - 3%);
 }
 nav{
     position: absolute;
@@ -99,13 +106,13 @@ li a{
     font-size: 4.8vw;
     cursor: pointer;
 }
-#kezd{
+#uj-jatek{
+    display: none;
+}
+#kezd,#uj-jatek{
     position: absolute;
     top:calc(50% - 3vw);
     left: calc(50% - 10vw);
-}
-#uj-jatek{
-    display: none;
 }
 
  @keyframes forgatas{
@@ -116,16 +123,47 @@ li a{
         transform: rotateZ(360deg);
     }
 }
+@keyframes loszer-behelyez{
+    0%{
+        width: 24%;
+        height: 24%;
+        top:calc(50% - 0%);
+        left: calc(50% - 12%);
+    }
+    100%{
+        width: 18%;
+        height: 18%;
+        top:calc(50% - 9%);
+        left: calc(50% - 9%);
+    }
+}
+@keyframes fegyver-forgatasa-egy-ponttal{
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(60deg);
+    }
+}
 @media screen and (max-width: 750px){
     main{
         flex-direction: column;
         justify-content: space-around;
     }
     #gombok{
-        height: fit-content;
-        flex-direction: row;
+        height: 20vh;
+        width: 70vw;        
+        flex-direction: column;
+        align-items: center;
+    }
+    .gomb{
+        width: 100%;
+        max-width: 220px;
+        font-size: 2em;
     }
     #fegyver{
+        max-width: 90vw;
+        width: 90vw;
         min-width: 70vw;
     }
 }
