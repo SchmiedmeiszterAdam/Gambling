@@ -56,12 +56,17 @@ main{
     transform: rotate(-90deg) translate(176.3%);
     z-index: 20;
 }
-.loszer-megjelenit{
-    background: url(kepek/loszer.jpg) !important;
+#ver-hatter{
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
+}
+.loszer-megjelenit{
+    background: url(kepek/loszer.jpg) !important;
     animation: loszer-behelyez 1s forwards !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
 }
 #lyuk-2{
     transform:rotate(30deg) translate(176.3%);
@@ -98,23 +103,94 @@ li a{
     height: 45vh;
     display: flex;
     flex-direction: column;
-    align-items: space-around;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    max-width: 300px;
 }
 .gomb{
+    max-width: 100%;
+    width: 100%;
+    font-size: 3em;
+    cursor: pointer;
+}
+.gomb2{
     width: 20vw;
     font-size: 4.8vw;
     cursor: pointer;
 }
+#porget-div{
+    min-width: 220px;
+    text-align: center;
+    position: relative;
+    max-width: 300px;
+}
+#info{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    cursor: pointer;
+}
+#info-szoveg{
+    display: none;
+    width: 15ch;
+    font-size: 92%;
+    position: absolute;
+    right: -7em;
+    top: -6em;
+    background: white;
+}
+#szoveg-tarolo{
+    display: none;    
+    position: absolute;
+    text-align: center;
+    top:calc(30%);
+    z-index: 31;
+    width: 100vw;
+    height: fit-content;
+}
+#meghalt{
+    font-family: 'Creepster', cursive;
+    font-size: 6rem !important;
+    color: red;
+}
 #uj-jatek{
     display: none;
-}
-#kezd,#uj-jatek{
+    z-index: 31;
     position: absolute;
     top:calc(50% - 3vw);
     left: calc(50% - 10vw);
 }
-
+#kezd{
+    position: absolute;
+    top:calc(50% - 3vw);
+    left: calc(50% - 10vw);
+}
+#ver-hatter{
+    display: none;
+    position: absolute;
+    top:0;
+    z-index: 30;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100vw;
+}
+.hatter-megjelenites{
+    animation: hatter-megjelenes 1s forwards;
+}
+@keyframes hatter-megjelenes{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0.9;
+    }
+}
  @keyframes forgatas{
     0%{
         transform: rotateZ(0deg);
@@ -156,7 +232,7 @@ li a{
         flex-direction: column;
         align-items: center;
     }
-    .gomb{
+    .gomb,.gomb2{
         width: 100%;
         max-width: 220px;
         font-size: 2em;
@@ -165,5 +241,18 @@ li a{
         max-width: 90vw;
         width: 90vw;
         min-width: 70vw;
+    }
+    #kezd{
+        left: calc(50% - 110px);
+        top: calc(50% - 20.5px);
+    }
+    #uj-jatek{
+        left: calc(50% - 110px);
+        top: calc(50% - 20.5px);
+    }
+    #meghalt{
+        font-family: 'Creepster', cursive;
+        font-size: 4.5rem !important;
+        color: red;
     }
 }

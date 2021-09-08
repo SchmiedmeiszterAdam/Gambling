@@ -8,6 +8,9 @@
     <link href="orosz-rulett.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="orosz-rulett.js" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <title>Orosz rulett</title>
 </head>
 
@@ -18,8 +21,11 @@
         </nav>
         <div id="gombok">
             <input type="button" value="Lövés" id="loves" class="gomb">
+        <div id="porget-div">
             <input type="button" value="Pörgetés" id="porgetes" class="gomb">
-            <input type="button" value="Passz" id="passz" class="gomb">
+            <span id="info">&#8505;</span>
+            <h1 id="info-szoveg">A pörgetés után automatikus lövés történik feléd</h1>
+        </div>
         </div>
             <div id="fegyver">
                 <div class="lyuk" id="lyuk-1"></div>
@@ -29,10 +35,11 @@
                 <div class="lyuk" id="lyuk-5"></div>
                 <div class="lyuk" id="lyuk-6"></div>
                 <div class="pici-lyuk" id="lyuk-7"></div>
-                <input type="button" value="Start" id="kezd" class="gomb">
-                <input type="button" value="Új játék" id="uj-jatek" class="gomb">
+                <input type="button" value="Start" id="kezd" class="gomb2">
             </div>
-
+            <input type="button" value="Új játék" id="uj-jatek" class="gomb2">
+            <img src="kepek/ver.jpg" id="ver-hatter">
+            <div id="szoveg-tarolo"><h2 id="meghalt">MEGHALTÁL</h2></div>
     </main>
 </body>
 
