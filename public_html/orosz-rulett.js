@@ -1,32 +1,25 @@
 var loszerHelye;
 var fegyverAllasa;
-var vege;
 $(function () {
     $("#info").mouseenter(function(){$("#info-szoveg").css("display","block");$("#info-szoveg").addClass("hatter-megjelenites");})
-    $("#info").mouseleave(function(){$("#info-szoveg").css("display","none");$("#info-szoveg").removeClass("hatter-megjelenites");})
-    jatek();    
+    $("#info").mouseleave(function(){$("#info-szoveg").css("display","none");$("#info-szoveg").removeClass("hatter-megjelenites");})    
+    $("#kezd").click(jatekKezdete);
+    $("#uj-jatek").click(jatekKezdete);
+    $("#loves").click(lovesTortent);
+    $("#porgetes").click(ujProgetes);
 });
 
 
-function jatek() {
-    $("#kezd").click(jatekKezdete);
-    $("#uj-jatek").click(jatekKezdete);
-}
 
-
-function jatekKezdete() {   
-    vege = false; 
+function jatekKezdete() { 
     $("#ver-hatter").removeClass("hatter-megjelenites");
+    $("#ver-hatter").css("display","none");    
+    $("#szoveg-tarolo").css("display","none");
     ujJatekEltuntet();
     fegyverAllasa = 1;
     loszerHelyenekMeghatarozasa();    
-    $("#loves").click(lovesTortent);
-    $("#porgetes").click(ujProgetes);
-    $("#passz").prop('disabled',true);    
     gombokDisable();
     animaciok();
-    setTimeout(gombokEnable,3002);
-    
 }
 function ujJatekMegjelenit(){
     $("#uj-jatek").css("display","block");
@@ -47,6 +40,7 @@ function golyoBehelyezes(){
 function porgetesIdozitessel(){
     setTimeout(function(){ $("#fegyver").addClass("forog");}, 1501);
     setTimeout(function(){ $("#fegyver").removeClass("forog");
+    gombokEnable();
     }, 3002);
 }
 function porgetes(){
@@ -71,11 +65,11 @@ function lovesTortent(){
     gombokDisable();
     if(fegyverAllasa === loszerHelye){
         ujJatekMegjelenit();
-        vege = true;
         $("#ver-hatter").css("display","block");
         $("#ver-hatter").addClass("hatter-megjelenites");
         $("#szoveg-tarolo").css("display","block");
-        $("#szoveg-tarolo").addClass("hatter-megjelenites");
+        $("#szoveg-tarolo").addClass("hatter-megjelenites");        
+        return false; 
     }
     else{
         $("#fegyver").addClass("kicsit-forgat");
@@ -84,16 +78,15 @@ function lovesTortent(){
         if(fegyverAllasa === 7){
             fegyverAllasa = 1;
         }
-    }
-    if(!vege){
         setTimeout(ellenfelLepes, 1500);
     }
+    console.log(fegyverAllasa);
 }
 function ellenfelLepes(){
     if(fegyverAllasa === loszerHelye){
         alert("Nyertél!");
         ujJatekMegjelenit();
-        vege = true;
+        return false; 
     }
     else{
         $("#fegyver").addClass("kicsit-forgat");
@@ -102,9 +95,9 @@ function ellenfelLepes(){
         if(fegyverAllasa === 7){
             fegyverAllasa = 1;
         }
+        setTimeout(gombokEnable,1000);
     }
-    setTimeout(gombokEnable,1000);
-
+    console.log(fegyverAllasa);    
 }
 function gombokDisable(){
     $("#loves").prop('disabled',true);
