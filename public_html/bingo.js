@@ -18,7 +18,10 @@ var szam2;
 var jatekos_tomb_szamlalo;
 var generalas;
 $(function () {
-    jatekElkezdese();    
+    szamKiosztas();
+    tablazatLetrehozas();    
+    osszesSzamFeltoltes();
+    $("#kezd").on("click",jatekElkezdese)
 });
 
 function szamKiosztas() {
@@ -53,10 +56,8 @@ function szamKiosztas() {
 
 
 
-function jatekElkezdese(){    
-    szamKiosztas();
-    tablazatLetrehozas();    
-    osszesSzamFeltoltes();
+function jatekElkezdese(){ 
+    $("#kezdes").css("display","none")       
     idozito();
     $("#kezd").click(jatekElkezdese);    
     $("#igen").click(ujJatek);
@@ -104,9 +105,7 @@ function ellenorzes(){
           nyert = true;
           idozitoMegallitas();
     }
-    if(osszes_szam.length === 0){
-        alert("Vesztettél")
-    }
+    
 }
 function RandomSzamGeneralas(){
     if(!nyert){
@@ -117,6 +116,11 @@ function RandomSzamGeneralas(){
         osszes_szam.splice(szam,1);
         szam_mennyiseg--;
         i++;
+    }
+    if(osszes_szam.length === 70){
+        alert("Vesztettél")
+        idozitoMegallitas()
+        uj()
     }
     console.log(sebesseg)        
 }
@@ -131,7 +135,6 @@ function szamol(){
     var db = $(".volt").length;
     return db;
 }
-
 
 function osszesSzamFeltoltes(){
     osszes_szam = [];

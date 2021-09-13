@@ -53,16 +53,34 @@ td{
     cursor: pointer;
     text-align: center;
     font-size: 2rem;
+
 }
 tr{
     width: 8vw;
     height: 16vh;
+}
+#kezdes{
+    position: absolute;
+    width: 100%;
+    max-width: 415px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    top: calc(50%-100px);
+    left: calc(50%-100px);
+}
+.gomb{
+    font-size: 3em;
+    cursor: pointer;
 }
 #gep{
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    border-radius: 10%;
 }
 #jatekTer{
     height: 100%;
@@ -76,9 +94,6 @@ tr{
 }
 .volt{
     background: red;
-}
-#igen,#nem{
-    font-size: 3em;
 }
 #ujrakezdes{
     position: absolute;
