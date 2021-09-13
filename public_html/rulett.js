@@ -7,12 +7,18 @@ $(function () {
     szinezes();
     var cw = $('td').width();
     $('td').css({'height':cw+'px'});
+    var cw = $('.seged-div').width();
+    $('.seged-div').css({'height':cw+'px'});
     setTimeout(magassagAllitas,100);
+    segedDivekLetrhozasa()
+    divekElhelyezese()
 });
 $(window).bind("resize",magassagAllitas)
 function magassagAllitas(){
     var cw = $('td').width();
     $('td').css({'height':cw+'px'});
+    var cw = $('.seged-div').width();
+    $('.seged-div').css({'height':cw+'px'});
 }
 function szamokLetrehozasa() {
     for (let i = 0; i < 36; i++) {
@@ -43,4 +49,22 @@ function szinezes(){
     for (let i = 25; i < 36; i+=2) {
         $("#"+i+"").css("background","black")
     }
+}
+function segedDivekLetrhozasa(){
+    for (let i = 0; i < 20; i++) {
+        $("table").append("<div class = 'seged-div"+" " +"seged-"+ i +"' id = "+ i +"></div>")
+    }    
+}
+function divekElhelyezese(){
+    for (let i = 0; i < 11; i++) {
+        var tolas = 3.9+i*5.4
+        $(".seged-"+i+"").css("left",""+tolas+"vw")
+    }
+    var szorzo = 0;
+    for (let i = 11; i < 22; i++) {
+        var tolas = 3.9+szorzo*5.4
+        $(".seged-"+i+"").css("left",""+tolas+"vw")
+        szorzo++;
+    }
+    
 }
