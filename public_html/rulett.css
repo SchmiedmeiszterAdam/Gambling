@@ -15,6 +15,9 @@ main{
     overflow-y: hidden;
     overflow-x: hidden;
 }
+nav{
+    position: absolute;
+}
 #kerek{
     position: relative;
     max-width: 450px;
@@ -24,7 +27,7 @@ main{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /*animation: forgat 15s ease-out;*/
+    animation: forgat 15s ease-out;
 }
 table{
     background: red;
@@ -38,10 +41,12 @@ table{
 }
 td{
     font-size: 2.5vw;
-    width: 5.4vw;
+    width: 5.4vw !important;
+    height: 5.4vw;
     text-align: center;
     color: white;
 }
+
 #asztal{
     display: flex;
     flex-direction: column;
@@ -54,14 +59,8 @@ td{
     width: 3vw;
     position: absolute;
 }
-.seged-0{    
-    left: 3.9vw;
-}
-.seged-0,.seged-1,.seged-2,.seged-3,.seged-4,.seged-5,.seged-6,.seged-7,.seged-8,.seged-9,.seged-10{
-    top: 4vw;
-}
-.seged-11,.seged-12,.seged-13,.seged-14,.seged-15,.seged-16,.seged-17,.seged-18,.seged-19,.seged-20,.seged-21{
-    top: 9.5vw;
+td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[id="8"],td[id="9"]{
+    width: 5.6vw !important;
 }
 @keyframes forgat{    
     0%   { -webkit-transform: rotate(0deg); }
@@ -76,11 +75,10 @@ td{
         width: 100%;
         height: fit-content; 
     }
-    #kerek{
-        min-width: 0px !important;
-        width: 100% !important;
-        max-width: 100%;
+    td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[id="8"],td[id="9"]{
+        width: 5.4vw !important;
     }
+    
 }
 @media screen and (max-width:400px){
     table,#tabla{
@@ -89,5 +87,12 @@ td{
     }
     table{
         height: fit-content;
+    }
+    #kerek{
+        min-width: 0px !important;
+        width: 100% !important;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
     }
 }

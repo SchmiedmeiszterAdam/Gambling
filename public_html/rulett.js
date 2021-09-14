@@ -7,9 +7,12 @@ $(function () {
     szinezes();
     setTimeout(magassagAllitasTd,100);
     setTimeout(magassagAllitasKep,100);
+    setTimeout(szelessegFigyeles,100);
     segedDivekLetrhozasa()
-    divekElhelyezese()
 });
+
+
+$(window).bind("resize",szelessegFigyeles)
 $(window).bind("resize",magassagAllitasTd)
 function magassagAllitasTd(){
     var cw = $('td').width();
@@ -56,20 +59,36 @@ function szinezes(){
     }
 }
 function segedDivekLetrhozasa(){
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 22; i++) {
         $("table").append("<div class = 'seged-div"+" " +"seged-"+ i +"' id = "+ i +"></div>")
     }    
 }
-function divekElhelyezese(){
+function divekElhelyezese(elso, szorzas, magassag1,magassag2){
     for (let i = 0; i < 11; i++) {
-        var tolas = 3.9+i*5.4
+        var tolas = elso+i*szorzas
         $(".seged-"+i+"").css("left",""+tolas+"vw")
+        $(".seged-"+i+"").css({"top":magassag1 +"vw"})
+        $(".seged-"+i+"").css("background","gray")
     }
     var szorzo = 0;
-    for (let i = 11; i < 22; i++) {
-        var tolas = 3.9+szorzo*5.4
+    for (let i = 11; i < 23; i++) {
+        var tolas = elso+szorzo*szorzas
         $(".seged-"+i+"").css("left",""+tolas+"vw")
+        $(".seged-"+i+"").css({"top":magassag2 +"vw"})
+        $(".seged-"+i+"").css("background","gray")
         szorzo++;
     }
-    
+}
+function szelessegFigyeles(){
+    var oldalSzelesseg = $( window ).width();
+    console.log(oldalSzelesseg)
+    if(oldalSzelesseg > 800){
+        divekElhelyezese(3.5,5,3.5,8.5)
+    }
+    else if(oldalSzelesseg < 800 && oldalSzelesseg > 400){
+        divekElhelyezese(5.3,6.65,5.2,11.8)
+    }
+    else if(oldalSzelesseg < 400){
+        divekElhelyezese(6.8,8.34,6.9,15.3)
+    }
 }
