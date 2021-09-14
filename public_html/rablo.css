@@ -1,0 +1,56 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+nav{
+    position: absolute;
+}
+#kijelzo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    min-height: 100vh;
+    background: black;
+}
+#oszlop-1,#oszlop-2,#oszlop-3{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: animate 5s reverse linear infinite;
+}
+#oszlop-1 span,#oszlop-2 span,#oszlop-3 span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: rotateX(calc(var(--i)*30deg)) translateZ(210px);
+}
+#oszlop-1 span img,#oszlop-2 span img,#oszlop-3 span img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+@keyframes animate{
+    0%{
+        transform: perspective(1000px) rotateX(0deg);
+    }
+    100%{
+        transform: perspective(1000px) rotateX(360deg);
+    }
+}

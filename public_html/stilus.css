@@ -7,7 +7,7 @@
     padding: 0;
 }
 body{
-    background: url(kepek/hatter.jpg);
+    background: url(fo_oldal_kepek/hatter.jpg);
     background-attachment: fixed;
 }
 main{
@@ -49,13 +49,13 @@ main{
 }
 
 #bingo{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/bingo.png);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/bingo.png);
 }
 #rulett{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/roulette.png);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/roulette.png);
 }
 #rablo{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/felkaru.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/felkaru.jpg);
 }
 #orosz-rulett,#itt-a-piros,#rulett,#rablo,#poker,#black-jack,#bingo{
     font-size: 30px;
@@ -64,16 +64,16 @@ main{
     color: white;
 }
 #poker{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/poker.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/poker.jpg);
 }
 #black-jack{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/blackjack.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/blackjack.jpg);
 }
 #orosz-rulett{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/orosz-roulette.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/orosz-roulette.jpg);
 }
 #itt-a-piros{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(kepek/piros.jpg);    
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/piros.jpg);    
     font-weight: bold;
 }
 /*Navigáció*/

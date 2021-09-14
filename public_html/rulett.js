@@ -5,20 +5,25 @@ $(function () {
     szamokLetrehozasa()
     tablazatLetrehozas()
     szinezes();
-    var cw = $('td').width();
-    $('td').css({'height':cw+'px'});
-    var cw = $('.seged-div').width();
-    $('.seged-div').css({'height':cw+'px'});
-    setTimeout(magassagAllitas,100);
+    setTimeout(magassagAllitasTd,100);
+    setTimeout(magassagAllitasKep,100);
     segedDivekLetrhozasa()
     divekElhelyezese()
 });
-$(window).bind("resize",magassagAllitas)
-function magassagAllitas(){
+$(window).bind("resize",magassagAllitasTd)
+function magassagAllitasTd(){
     var cw = $('td').width();
     $('td').css({'height':cw+'px'});
     var cw = $('.seged-div').width();
     $('.seged-div').css({'height':cw+'px'});
+}
+$(window).bind("resize",magassagAllitasKep)
+function magassagAllitasKep(){
+    var cw = $('#kerek').width();
+    var ch = $('#kerek').height();
+    $('#kerek').css({'width':ch+'px'});
+    $('#kerek').css({'height':cw+'px'});
+    
 }
 function szamokLetrehozasa() {
     for (let i = 0; i < 36; i++) {

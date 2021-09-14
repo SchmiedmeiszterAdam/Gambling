@@ -1,10 +1,10 @@
 var loszerHelye;
 var fegyverAllasa;
-const lovesHang = new Audio("hangok/loves.mp3")
-const cilinderHang = new Audio("hangok/cilinder-zaras.mp3")
-const golyoHang = new Audio("hangok/golyo-behelyezes.mp3")
-const nincsLovesHang = new Audio("hangok/nincs-loves.mp3")
-const porgetesHang = new Audio("hangok/porget.mp3")
+const lovesHang = new Audio("orosz_rulett_hangok/loves.mp3")
+const cilinderHang = new Audio("orosz_rulett_hangok/cilinder-zaras.mp3")
+const golyoHang = new Audio("orosz_rulett_hangok/golyo-behelyezes.mp3")
+const nincsLovesHang = new Audio("orosz_rulett_hangok/nincs-loves.mp3")
+const porgetesHang = new Audio("orosz_rulett_hangok/porget.mp3")
 $(function () {
     gombokDisable()
     $("#info").mouseenter(function(){$("#info-szoveg").css("display","block");$("#info-szoveg").addClass("hatter-megjelenites");})
@@ -19,8 +19,11 @@ $(function () {
 });
 $(window).bind("resize",magassagAllitas)
 function magassagAllitas(){
-var cw = $('#fegyver-tarolo').width();
-$('#fegyver-tarolo').css({'height':cw+'px'});
+    var cw = $('#fegyver-tarolo').width();
+    var ch = $('#fegyver-tarolo').height();
+    $('#fegyver-tarolo').css({'width':ch+'px'});
+    $('#fegyver-tarolo').css({'height':cw+'px'});
+    
 }
 
 function jatekKezdete() { 

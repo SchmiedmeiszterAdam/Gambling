@@ -17,9 +17,10 @@ main{
 }
 #kerek{
     position: relative;
-    width: 25vw;
-    height: 25vw;
-    background: url(kepek/kerek.png);
+    max-width: 450px;
+    min-width: 450px;
+    aspect-ratio: 1/1;
+    background: url(rulet_kepek/kerek.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -31,7 +32,9 @@ table{
     position: relative;
 }
 #tabla{
-    width: 65vw;
+    width: 60%;
+    max-height: 100%;
+    max-width: 1500px;
 }
 td{
     font-size: 2.5vw;
@@ -64,13 +67,25 @@ td{
     0%   { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(5400deg); }
 }
-@media screen and (max-width:400px){
-    #kerek{
-        width: 70vw;
-        height: 70vw;
+
+@media screen and (max-width:800px){
+    #tabla{
+        width: 80%;
     }
+    table{
+        width: 100%;
+        height: fit-content; 
+    }
+    #kerek{
+        min-width: 0px !important;
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
+@media screen and (max-width:400px){
     table,#tabla{
         width: 100%;
+        max-width: 100%;
     }
     table{
         height: fit-content;

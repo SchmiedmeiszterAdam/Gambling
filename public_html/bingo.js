@@ -117,7 +117,7 @@ function RandomSzamGeneralas(){
         szam_mennyiseg--;
         i++;
     }
-    if(osszes_szam.length === 70){
+    if(osszes_szam.length === 0){
         alert("Vesztettél")
         idozitoMegallitas()
         uj()

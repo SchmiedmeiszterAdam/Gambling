@@ -7,7 +7,7 @@
     padding: 0;
 }
 body{
-    background: url(kepek/orosz-rulett-hatter.jpg);
+    background: url(orosz_rulett_kepek/orosz-rulett-hatter.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -65,7 +65,7 @@ main{
     background-repeat: no-repeat !important;
 }
 .loszer-megjelenit{
-    background: url(kepek/loszer.jpg) !important;
+    background: url(orosz_rulett_kepek/loszer.jpg) !important;
     animation: loszer-behelyez 1s forwards !important;
     background-position: center !important;
     background-size: cover !important;
@@ -246,7 +246,7 @@ li a{
         min-width: 0;
     }
     #fegyver-tarolo{
-        max-width: 520px;
+        max-width: 100vw;
         width: 90vw;
         min-width: 70vw;
         height: 100%;
