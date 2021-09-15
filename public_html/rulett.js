@@ -32,22 +32,22 @@ function tablazatLetrehozas() {
         $("table").append("<tr id = tr-" + (i + 1) + ">");
     }
     for (let i = 0; i < 36; i += 3) {
-        $("table tr").eq(0).append("<td id = " + szamok[i] + " class = 'szamTd'>" + szamok[i] + "</td");
-        $("table tr").eq(1).append("<td id = " + szamok[i + 1] + " class = 'szamTd'>" + szamok[i + 1] + "</td");
-        $("table tr").eq(2).append("<td id = " + szamok[i + 2] + " class = 'szamTd'>" + szamok[i + 2] + "</td");
+        $("table tr").eq(0).append("<td id = 'td" + szamok[i] + "' class = 'szamTd'>" + szamok[i] + "</td");
+        $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd'>" + szamok[i + 1] + "</td");
+        $("table tr").eq(2).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd'>" + szamok[i + 2] + "</td");
     }
 
 }
 function szinezes() {
     for (let i = 1; i < 12; i += 2) {
-        $("#" + i + "").css("background", "black")
+        $("#td" + i).css("background-color", "black")
+        $("#td" + (i+12)).css("background-color", "black")
+        $("#td" + (i+24)).css("background-color", "black")
+        $("#td" + (i+1)).css("background-color", "green")
+        $("#td" + (i+13)).css("background-color", "green")
+        $("#td" + (i+25)).css("background-color", "green")
     }
-    for (let i = 13; i < 24; i += 2) {
-        $("#" + i + "").css("background", "black")
-    }
-    for (let i = 25; i < 36; i += 2) {
-        $("#" + i + "").css("background", "black")
-    }
+    
 }
 function segedDivekLetrhozasa() {
     for (let i = 0; i < 22; i++) {
@@ -63,14 +63,12 @@ function b() {
         var tolas = elsoHelye + i * tdSzelesseg
         $(".seged-" + i + "").css("left", "" + tolas + "%")
         $(".seged-" + i + "").css("bottom", "" + magassag + "%")
-        $(".seged-" + i + "").css("background", "gray")
     }
     var szorzo = 0;
     for (let i = 11; i < 23; i++) {
         var tolas = elsoHelye + szorzo * tdSzelesseg
         $(".seged-" + i + "").css("left", "" + tolas + "%")
         $(".seged-" + i + "").css({ "top": magassag + "%" })
-        $(".seged-" + i + "").css("background", "gray")
         szorzo++;
     }
 }
@@ -78,31 +76,14 @@ function kepKattintMeghiv() {
     $("#zsetonok img").on("click", zsetonHelyezes)
 }
 function zsetonHelyezes() {
-    $(".seged-div").on("click",ertekFelrakas1)
-    $(".szamTd").on("click",ertekFelrakas2)
+    $(".seged-div").on("click",ertekFelrakas)
+    $(".szamTd").on("click",ertekFelrakas)
 
     $("#zsetonok img").css("width", "10%")
     $(this).css("width", "11%")
     var id = $(this).attr("id")
     zsetonErtek = id;
 }
-function ertekFelrakas1(){
-    var pozicio = $(this).position()
-    console.log(pozicio)
-    $("table").append("<img src = 'rulett_kepek/zseton"+zsetonErtek+".png' class = 'zseton-"+zsetonSzamlalo+"'>")
-    var oldal =  pozicio.left+segedDivSzelesseg_magassaga
-    var magassag = pozicio.top+segedDivSzelesseg_magassaga
-    $(".zseton-"+zsetonSzamlalo+"").css("top",magassag + "px")
-    $(".zseton-"+zsetonSzamlalo+"").css("left",oldal + "px")    
-    zsetonSzamlalo++;
-}
-function ertekFelrakas2(){
-    var pozicio = $(this).position()
-    console.log(pozicio)
-    $("table").append("<img src = 'rulett_kepek/zseton"+zsetonErtek+".png' class = 'zseton-"+zsetonSzamlalo+"'>")
-    var oldal =  pozicio.left+tdSzelesseg
-    var magassag = pozicio.top+tdSzelesseg+5
-    $(".zseton-"+zsetonSzamlalo+"").css("top",magassag + "px")
-    $(".zseton-"+zsetonSzamlalo+"").css("left",oldal + "px")    
-    zsetonSzamlalo++;
+function ertekFelrakas(){
+    $(this).css("background-image","url('rulett_kepek/zseton"+zsetonErtek+".png')")    
 }
