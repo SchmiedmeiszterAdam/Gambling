@@ -3,6 +3,11 @@ var zsetonErtek = 0;
 var zsetonSzamlalo = 0;
 var segedDivSzelesseg_magassaga = 5;
 var tdSzelesseg = 100 / 12;
+
+$(window).bind("resize", magassagAllitasTd)
+$(window).bind("resize", b)
+
+
 $(function () {
     szamokLetrehozasa()
     tablazatLetrehozas()
@@ -11,9 +16,17 @@ $(function () {
     setTimeout(magassagAllitasTd, 100);
     b();
     kepKattintMeghiv()
+    $("#kezd").on("click",jatekKezdes)
 });
-$(window).bind("resize", magassagAllitasTd)
-$(window).bind("resize", b)
+
+
+function jatekKezdes(){
+    $("#kerek").addClass("kerekForgatas")
+    $("#gombok").css("display","none")
+    setTimeout(function(){$("#kerek").removeClass("kerekForgatas");$("#gombok").css("display","flex")},15000)
+}
+
+
 function magassagAllitasTd() {
     var cw = $('td').width();
     $('td').css({ 'height': cw + 'px' });
@@ -43,9 +56,9 @@ function szinezes() {
         $("#td" + i).css("background-color", "black")
         $("#td" + (i+12)).css("background-color", "black")
         $("#td" + (i+24)).css("background-color", "black")
-        $("#td" + (i+1)).css("background-color", "green")
-        $("#td" + (i+13)).css("background-color", "green")
-        $("#td" + (i+25)).css("background-color", "green")
+        $("#td" + (i+1)).css("background-color", "red")
+        $("#td" + (i+13)).css("background-color", "red")
+        $("#td" + (i+25)).css("background-color", "red")
     }
     
 }
@@ -85,5 +98,6 @@ function zsetonHelyezes() {
     zsetonErtek = id;
 }
 function ertekFelrakas(){
-    $(this).css("background-image","url('rulett_kepek/zseton"+zsetonErtek+".png')")    
+    $(this).css("background-image","url('rulett_kepek/zseton"+zsetonErtek+".png')")
+    $(this).css("color","black")
 }

@@ -14,6 +14,7 @@ main{
     background: rgb(93, 121, 93);
     overflow-y: hidden;
     overflow-x: hidden;
+    position: relative;
 }
 nav{
     position: absolute;
@@ -28,7 +29,23 @@ nav{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /*animation: forgat 15s ease-out;*/
+}
+.kerekForgatas{
+    animation: forgat 15s ease-out;
+}
+#gombok{
+    width: 40vw;
+    height: 20vh;
+    position: absolute;
+    top: calc(50% - 10vh);
+    left: calc(50% - 20vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#kezd{
+    font-size: 3rem;
+    cursor: pointer;
 }
 table{
     border-collapse: collapse;
