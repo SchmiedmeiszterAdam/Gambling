@@ -9,48 +9,99 @@
 body{
     width: 100vw;
     height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 nav{
     position: absolute;
+    top: 0;
+    left: 0;
+}
+main{
+    /*overflow-y: hidden;
+    overflow-x: hidden;*/
 }
 #kijelzo{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 50vw;
     height: 50vh;
-    min-height: 100vh;
-    background: black;
+    min-height: 90vh;
+    max-width: 500px;
+    max-height: 590px;
+    position: relative;
 }
 #oszlop-1,#oszlop-2,#oszlop-3{
     position: relative;
-    width: 200px;
-    height: 200px;
-    transform-style: preserve-3d;
-    animation: animate 5s reverse linear infinite;
+    width: calc(100% / 3);
+    height: 30%;
+    transform-style: preserve-3d;    
+}
+.porgetes{
+    animation: animate 2s reverse linear infinite;
 }
 #oszlop-1 span,#oszlop-2 span,#oszlop-3 span{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 80%;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateX(calc(var(--i)*30deg)) translateZ(210px);
+    transform: rotateX(calc(var(--i)*30deg)) translateZ(38vh);
 }
-#oszlop-1 span img,#oszlop-2 span img,#oszlop-3 span img{
+#oszlop-1 span div,#oszlop-2 span div,#oszlop-3 span div{
     position: absolute;
     top: 0;
     left: 0;
-    width: 80%;
-    height: 80%;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: red;
+}
+#takaras-1,#takaras-2{
+    width: 110%;
+    height: 35%;
+    position: absolute;
+    background: black;
+    z-index: 5;
+
+}
+#takaras-1{
+    top:0;
+    height: 30%;
+}
+#takaras-2{
+    height: 35%;
+    bottom:0;
 }
 @keyframes animate{
     0%{
-        transform: perspective(1000px) rotateX(0deg);
+        transform: perspective(10000px) rotateX(0deg);
     }
     100%{
-        transform: perspective(1000px) rotateX(360deg);
+        transform: perspective(10000px) rotateX(360deg);
+    }
+}
+@media screen and (max-width:700px){
+    #gep{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #kijelzo{
+        width: 80%;
+    }
+}
+@media screen and (max-width:445px){
+    #kijelzo{
+        width: 100%;
     }
 }

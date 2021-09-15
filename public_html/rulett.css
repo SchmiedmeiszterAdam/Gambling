@@ -20,47 +20,65 @@ nav{
 }
 #kerek{
     position: relative;
-    max-width: 450px;
-    min-width: 450px;
+    width: 30%;
+    height: auto;
+    max-width: 500px;
     aspect-ratio: 1/1;
-    background: url(rulet_kepek/kerek.png);
+    background: url(rulett_kepek/kerek.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    animation: forgat 15s ease-out;
+    /*animation: forgat 15s ease-out;*/
 }
 table{
     background: red;
     border-collapse: collapse;
     position: relative;
+    width: 100%;
+    height: fit-content;
+}
+table>img{
+    width: 6%;
+    position: absolute;
 }
 #tabla{
     width: 60%;
-    max-height: 100%;
+    max-height: 50%;
     max-width: 1500px;
+    position: relative;
 }
 td{
     font-size: 2.5vw;
-    width: 5.4vw !important;
-    height: 5.4vw;
+    width: calc(100%/12);
     text-align: center;
     color: white;
 }
-
+#zsetonok{
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: -55%;
+    left: 0;
+}
+#zsetonok img{
+    width: 10%;
+}
 #asztal{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+    max-width: 100vw;
     height: 100%;
+    max-height: 100vh;
 }
 .seged-div{
-    width: 3vw;
+    width: 5%;
     position: absolute;
-}
-td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[id="8"],td[id="9"]{
-    width: 5.6vw !important;
 }
 @keyframes forgat{    
     0%   { -webkit-transform: rotate(0deg); }
@@ -68,6 +86,9 @@ td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[
 }
 
 @media screen and (max-width:800px){
+    #asztal{
+        flex-direction: column;
+    }
     #tabla{
         width: 80%;
     }
@@ -75,8 +96,8 @@ td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[
         width: 100%;
         height: fit-content; 
     }
-    td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[id="8"],td[id="9"]{
-        width: 5.4vw !important;
+    #zsetonok{
+        width: 100%;
     }
     
 }
@@ -89,10 +110,6 @@ td[id="1"],td[id="2"],td[id="3"],td[id="4"],td[id="5"],td[id="6"],td[id="7"],td[
         height: fit-content;
     }
     #kerek{
-        min-width: 0px !important;
         width: 100% !important;
-        max-width: 100%;
-        height: 100%;
-        max-height: 100%;
     }
 }
