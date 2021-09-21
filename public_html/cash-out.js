@@ -14,11 +14,9 @@ $(function () {
     $("#ertek").on("change",ertekLekeresEllenorzes)
     $(".tet-gomb").on("click",ertekValtoztatas)
 });
-$(window).bind("resize", magassagAllitas)
 
 function jatekInditas() {
     tablazatLetrehozas()
-    magassagAllitas()
     bombaLehetosegekFeltoltes()
     bombaElhelyezes()
     $(".kartya").on("click", forgat)
@@ -79,7 +77,6 @@ function tablazatLetrehozas() {
             $("#tablazat table tr").eq(i).append("<td id =" + idSzamalalo + " class = 'tabla-td kartya'><img src='cash_out_kepek/hatlap.jpg' class='hatlap'></td>")
             idSzamalalo++;
         }
-        magassagAllitas()
     }
 }
 function bombaSzamKivalasztas() {
@@ -121,10 +118,6 @@ function ellenorzes() {
 function ujJatekMegjelenit(){
     $("#uj-jatek").css("display","block")
     $("#jatek-ter").css("opacity","0.2")
-}
-function magassagAllitas() {
-    var magassag = $(".tabla-td").width()
-    $("tr").css({ 'height': magassag + 'px' })
 }
 function forgat() {
     $(this).addClass("flip")

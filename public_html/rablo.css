@@ -30,10 +30,9 @@ main{
 }
 #gep{
     background-image: url(fel_karu_rablo_kepek/wall-murals-slot-machine.png);
-    width: 500PX;
-    height: 100%;
+    width: 519px;
+    height: 700px;
     position: relative;
-    top: 0;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -48,16 +47,16 @@ main{
 }
 #kijelzo-tarto{
     position: absolute;
-    width: 65%;
+    width: 60%;
     height: 45%;
     z-index: -1;
-    left: calc(50% - 32.5%);
+    left: calc(50% - 30%);
     top: 21%;
 }
 #oszlop-1,#oszlop-2,#oszlop-3{
     position: relative;
     width: calc(100% / 3);
-    height: 60%;
+    height: 55%;
     transform-style: preserve-3d;    
 }
 .porgetes{
@@ -71,7 +70,7 @@ main{
     height: 80%;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateX(calc(var(--i)*30deg)) translateZ(30vh);
+    transform: rotateX(calc(var(--i)*30deg)) translateZ(200px);
 }
 #oszlop-1 span div,#oszlop-2 span div,#oszlop-3 span div{
     position: absolute;
@@ -138,27 +137,13 @@ main{
         transform: perspective(10000px) rotateX(360deg);
     }
 }
-@media screen and (max-width:700px){
-    #gep{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #kijelzo{
-        width: 100%;
-    }
-}
-@media screen and (max-width:470px){
-    #kijelzo-tarto{
-        width: 80%;
-        left: calc(50% - 40%);
-    }
-    #gep{
-        height: 180vw;
-    }
-    #oszlop-1 span div,#oszlop-2 span div,#oszlop-3 span div{
-        height: 28vw;
-        }
 
+@media screen and (max-width:470px){
+    #gep{
+        width: 259.5px;
+        height: 350px;
+    }
+    #oszlop-1 span,#oszlop-2 span,#oszlop-3 span{
+        transform: rotateX(calc(var(--i)*30deg)) translateZ(100px);
+    }
 }
