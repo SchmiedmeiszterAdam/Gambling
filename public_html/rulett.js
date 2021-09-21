@@ -1,15 +1,13 @@
-var szamok = [];
+var szamok = []
 var zsetonok = []
-var zsetonErtek = 0;
-var zsetonSzamlalo = 0;
-var segedDivSzelesseg_magassaga = 5;
-var tdSzelesseg = 100 / 12;
-var segedDivClass = 36;
-
-
+var zsetonErtek = 0
+var zsetonSzamlalo = 0
+var segedDivSzelesseg_magassaga = 5
+var tdSzelesseg = 100 / 12
+var segedDivClass = 36
+var golyoHely
 
 $(window).bind("resize", magassagAllitasTd)
-
 $(function () {
     szamokLetrehozasa()
     tablazatLetrehozas()
@@ -17,22 +15,44 @@ $(function () {
     segedDivekLetrhozasa()
     setTimeout(magassagAllitasTd, 100);
     segedDivekElhelyezese();
-    kepKattintMeghiv()
-    $("#kezd").on("click",jatekKezdes)
-    $(".seged-div").on("click",ertekFelrakas)
-    $(".szamTd").on("click",ertekFelrakas)
+    $("#kezd").on("click", jatekKezdes)
+
 });
 
 
-function jatekKezdes(){
-
+function jatekKezdes() {
+    $("#gombok").css("display", "none")
+    setTimeout(kerekForgatas, 10000)
+    szamAdas()
+    setTimeout(ellenorzes,9000)
+    kepKattintMeghiv()
+    $(".seged-div").on("click", ertekFelrakas)
+    $(".szamTd").on("click", ertekFelrakas)
+}
+function kerekForgatas() {
     $("#kerek").addClass("kerekForgatas")
     $("#golyo-tarolo").addClass("golyo-forgat")
-    $("#gombok").css("display","none")
-    setTimeout(function(){$("#kerek").removeClass("kerekForgatas");$("#gombok").css("display","flex");$("#golyo-tarolo").removeClass("golyo-forgat")},15000)
+    setTimeout(function () {
+        $("#kerek").removeClass("kerekForgatas");
+        $("#gombok").css("display", "flex");
+        $("#golyo-tarolo").removeClass("golyo-forgat")
+    }
+        , 15000)
 }
-
-
+function szamAdas() {
+    golyoHely = Math.floor(Math.random() * 37);
+    console.log(golyoHely)
+}
+function ellenorzes(){
+    tettE = zsetonok[golyoHely - 1];
+    console.log(tettE)
+    if(tettE === undefined){
+        alert("Vesztettél")
+    }
+    else{
+        alert("Nyertél")
+    }
+}
 
 function magassagAllitasTd() {
     var cw = $('td').width();
@@ -41,10 +61,9 @@ function magassagAllitasTd() {
     $('.seged-div').css({ 'height': cw + 'px' });
 }
 function szamokLetrehozasa() {
-    for (let i = 0; i < 36; i++) {
-        szamok[i] = i + 1;
+    for (let i = 0; i < 37; i++) {
+        szamok[i] = i;
     }
-    console.log(szamok)
 }
 function tablazatLetrehozas() {
     $("#tabla").append("<table></table>");
@@ -52,26 +71,26 @@ function tablazatLetrehozas() {
         $("table").append("<tr id = tr-" + (i + 1) + ">");
     }
     for (let i = 0; i < 36; i += 3) {
-        $("table tr").eq(0).append("<td id = 'td" + szamok[i] + "' class = 'szamTd "+szamok[i-1]+"'>" + szamok[i] + "</td");
-        $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd "+szamok[i]+"'>" + szamok[i + 1] + "</td");
-        $("table tr").eq(2).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd "+szamok[i+1]+"'>" + szamok[i + 2] + "</td");
+        $("table tr").eq(0).append("<td id = 'td" + szamok[i] + "' class = 'szamTd " + szamok[i] + "'>" + szamok[i+1] + "</td");
+        $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd " + szamok[i+1] + "'>" + szamok[i + 2] + "</td");
+        $("table tr").eq(2).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd " + szamok[i + 2] + "'>" + szamok[i + 3] + "</td");
     }
 
 }
 function szinezes() {
-    for (let i = 1; i < 12; i += 2) {
+    for (let i = 0; i < 12; i += 2) {
         $("#td" + i).css("background-color", "black")
-        $("#td" + (i+12)).css("background-color", "black")
-        $("#td" + (i+24)).css("background-color", "black")
-        $("#td" + (i+1)).css("background-color", "red")
-        $("#td" + (i+13)).css("background-color", "red")
-        $("#td" + (i+25)).css("background-color", "red")
+        $("#td" + (i + 12)).css("background-color", "black")
+        $("#td" + (i + 24)).css("background-color", "black")
+        $("#td" + (i + 1)).css("background-color", "red")
+        $("#td" + (i + 13)).css("background-color", "red")
+        $("#td" + (i + 25)).css("background-color", "red")
     }
-    
+
 }
 function segedDivekLetrhozasa() {
     for (let i = 0; i < 22; i++) {
-        $("table").append("<div class = 'seged-div " + (segedDivClass+i) + " seged-" + i + "' id = " + i + "></div>")
+        $("table").append("<div class = 'seged-div " + (segedDivClass + i) + " seged-" + i + "' id = " + i + "></div>")
     }
 }
 function segedDivekElhelyezese() {
@@ -100,14 +119,14 @@ function zsetonHelyezes() {
     zsetonErtek = id;
 }
 var i = 0;
-function ertekFelrakas(){
+function ertekFelrakas() {
     $(this).empty()
-    $(this).append("<img src = 'rulett_kepek/zseton"+zsetonErtek+".png' class='beillesztett-zseton "+zsetonErtek+"'>")
+    $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
     var elemClass = $(this).attr('class').split(' ')[1];
     var gyerekek = $(this).children()
 
     var gyerekZsetonErtek = $(gyerekek).attr('class').split(' ')[1];
-    
+
     zsetonok[elemClass] = gyerekZsetonErtek
 
     console.log(zsetonok)

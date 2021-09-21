@@ -74,14 +74,13 @@ function tablazatLetrehozas() {
     var idSzamalalo = 0;
     $("#tablazat").append("<table></table>")
     for (let i = 0; i < 5; i++) {
-        
         $("#tablazat table").append("<tr></tr>")
         for (let j = 0; j < 5; j++) {
             $("#tablazat table tr").eq(i).append("<td id =" + idSzamalalo + " class = 'tabla-td kartya'><img src='cash_out_kepek/hatlap.jpg' class='hatlap'></td>")
             idSzamalalo++;
         }
+        magassagAllitas()
     }
-    magassagAllitas()
 }
 function bombaSzamKivalasztas() {
     bombakSzama = $(this).attr("id")
