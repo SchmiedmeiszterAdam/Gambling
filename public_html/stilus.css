@@ -16,8 +16,7 @@ main{
     display: grid;
     grid-template-areas:
     "n"
-    "j"
-    "f";
+    "j";
 }
 
 .jatek,body{    
@@ -32,7 +31,7 @@ main{
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    grid-area: j;
+    grid-area: "j";
     max-width: 100vw;
 }
 .jatek{
@@ -46,6 +45,10 @@ main{
     cursor: pointer;
     margin: 10px;   
     font-weight: bold;
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
 }
 
 #bingo{
@@ -57,12 +60,6 @@ main{
 #rablo{
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/felkaru.jpg);
 }
-#orosz-rulett,#itt-a-piros,#rulett,#rablo,#poker,#black-jack,#bingo{
-    font-size: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-}
 #poker{
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/poker.jpg);
 }
@@ -73,8 +70,11 @@ main{
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/orosz-roulette.jpg);
 }
 #itt-a-piros{
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/piros.jpg);    
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/piros.jpg);
     font-weight: bold;
+}
+#cash-out{
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(fo_oldal_kepek/cash-out.jpg);
 }
 /*Navigáció*/
 nav{

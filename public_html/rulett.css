@@ -31,7 +31,7 @@ nav{
     background-repeat: no-repeat;
 }
 .kerekForgatas{
-    animation: forgat 15s ease-out;
+    animation: forgat 15s ease-in-out forwards;
 }
 #gombok{
     width: 40vw;
@@ -82,6 +82,10 @@ td{
 #zsetonok img{
     width: 10%;
 }
+.beillesztett-zseton{
+    width: 80%;
+    height: 80%;
+}   
 #asztal{
     display: flex;
     flex-direction: row;
@@ -101,11 +105,44 @@ td{
     background-size: 80% !important;
     background-repeat: no-repeat !important;
 }
+
+#golyo-tarolo{
+    width: fit-content;
+    height: 45%;
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    left:calc(50% - 10px);
+    bottom: 50%;
+    /*background: red;*/
+    transform-origin: bottom;
+    
+}
+#golyo{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: yellow;
+
+}
+.golyo-forgat{
+    animation: golyo-forgatas 15s ease-in-out forwards;
+}
 @keyframes forgat{    
     0%   { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(5400deg); }
+    100% { -webkit-transform: rotate(4900deg); }
 }
+@keyframes golyo-forgatas {
+    0%{
+        transform: rotate(0deg);
+        height: 45%;
+    }
+    100%{
+        transform:rotate(-10080deg);
+        height: 35%;
 
+    }
+}
 @media screen and (max-width:800px){
     #asztal{
         flex-direction: column;

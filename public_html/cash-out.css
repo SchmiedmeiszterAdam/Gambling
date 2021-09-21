@@ -1,0 +1,190 @@
+@charset "utf-8";
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+}
+main{
+    width:100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+nav{
+    position: absolute;
+    top:5%;
+    left:5%;
+    
+}
+nav li{
+    list-style-type: none;
+}
+nav a{
+    text-decoration: none;
+    color:rgb(0, 0, 0)
+}
+#jatek-ter{
+    width:85%;
+    height: 85%;
+    max-width: 1200px;
+    max-height: 800px;
+    background-color:rgb(27, 27, 27);
+    border-radius: 2%;
+    display: flex;
+    overflow:auto;
+    align-items: center;
+    justify-content: center;
+}
+#adatok{
+    width:40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#tablazat{
+    width:60%;
+    height: fit-content;
+    max-width: 600px;
+    max-height: 600px;
+}
+.kartya{
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transfrom .5s;
+}
+.kartya:active{
+    transform:scale(.97);
+    transition: transform .2s;
+}
+.kartya.flip{
+    transform: rotateY(180deg);
+}
+.elolap,.hatlap{
+    width:100%;
+    height:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding:20%;
+    border-radius: 5px;
+    backface-visibility: hidden;
+}
+.elolap{
+    transform:rotateY(180deg);
+}
+table{
+    width:100%;
+    height: 100%;
+    border-spacing: 10px;
+}
+table tr{
+    width:100%;
+}
+table tr td{
+    background-color: white;
+    border-radius: 3%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin:0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+#bomba-szam{
+    display: flex;
+    width:100%;
+    height: 25%;
+    justify-content: space-between;
+}
+#tartalom{
+    width: 90%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#tet{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+}
+#ertek{
+    width: 60%;
+    height: 100%;
+}
+.tet-gomb{
+    width:calc(40% / 3);
+    height: 100%;
+}
+.bomba-gomb{
+    height:100%;
+    width:100%;
+}
+.bomba-gomb,.tet-gomb{
+    border:1px solid lightgray;
+    background-color:white;
+}
+.piros{
+    background-color: red;
+}
+#jatek-inditas{
+    width:100%;
+    height:25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#inditas{
+    width: 100%;
+    height: 100%;
+    background-color:gold;
+    border-radius: 10px;    
+}
+#inditas,.bomba-gomb,.tet-gomb{
+    cursor: pointer;
+}
+.bomba-gomb:active{
+    background-color: red;
+}
+#uj-jatek{
+    display: none;
+    position:absolute;
+    width:20%;
+    height: 20%;
+    top:calc(50% - 10%);
+    left:calc(50% - 10%);
+    background-color: black;
+}
+@media screen and (max-width:650px){
+    #jatek-ter{
+        flex-direction: column;
+    }
+    #tablazat{
+        width:100%;
+        height:fit-content;
+    }
+    #adatok{
+        width:100%;
+        height:30%;
+    }
+    #tartalom{
+        width:100%;
+        height: 100%;
+    }
+
+}
+@media screen and (max-width:350px){
+#jatek-ter{
+    width:100%;
+}
+}
