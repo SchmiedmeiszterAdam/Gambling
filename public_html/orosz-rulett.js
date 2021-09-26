@@ -23,7 +23,6 @@ function magassagAllitas(){
     var ch = $('#fegyver-tarolo').height();
     $('#fegyver-tarolo').css({'width':ch+'px'});
     $('#fegyver-tarolo').css({'height':cw+'px'});
-    
 }
 
 function jatekKezdete() { 

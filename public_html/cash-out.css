@@ -43,7 +43,9 @@ nav a{
     width:40%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 #tablazat{
     width:60%;
@@ -93,6 +95,7 @@ table tr td{
     width: 40px;
     height: 40px;
     aspect-ratio: 1/1;
+    cursor: pointer;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button{
@@ -108,15 +111,19 @@ input[type=number] {
     height: 25%;
     justify-content: space-between;
 }
-#tartalom{
+#tartalom,#nyeremeny{
     width: 90%;
-    height: 35%;
+    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
-#tet{
+#aktualis-nyeremeny{
+    height: 75%;
+    color:white;
+}
+#tet-valtoztato{
     width: 100%;
     height: 25%;
     display: flex;
@@ -148,17 +155,24 @@ input[type=number] {
     justify-content: center;
     align-items: center;
 }
-#inditas{
+.fo-gomb{
     width: 100%;
-    height: 100%;
-    background-color:gold;
+    
     border-radius: 10px;    
 }
-#inditas,.bomba-gomb,.tet-gomb{
+#inditas{
+    background-color:gold;
+    height: 100%;
+}
+#kivetel{
+    background-color: chartreuse;
+    height: 25%;
+}
+.fo-gomb,.bomba-gomb,.tet-gomb{
     cursor: pointer;
 }
-.bomba-gomb:active{
-    background-color: red;
+#ertek:focus{
+    outline: none;
 }
 #uj-jatek{
     display: none;

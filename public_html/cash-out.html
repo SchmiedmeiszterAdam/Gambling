@@ -19,11 +19,11 @@
         <div id="jatek-ter">
             <div id="adatok">
                 <div id="tartalom">
-                    <div id="tet">
+                    <div id="tet-valtoztato">
                         <input type="number" id="ertek" value="100">
-                        <input type="button" value="1/2" id="0.5" class="tet-gomb felezo">
-                        <input type="button" value="2" id="2" class="tet-gomb">
-                        <input type="button" value="max" id="max" class="tet-gomb">
+                        <input type="button" value="1/2" id="0.5" class="tet-gomb tet-felezo-duplazo felezo">
+                        <input type="button" value="2" id="2" class="tet-gomb tet-felezo-duplazo dupla">
+                        <input type="button" value="max" id="max" class="tet-gomb tet-max">
                     </div>
                     <div id="bomba-szam">
                         <input type="button" value="1" id="1" class="bomba-gomb piros">
@@ -32,8 +32,15 @@
                         <input type="button" value="20" id="20" class="bomba-gomb">
                     </div>
                     <div id="jatek-inditas">
-                        <input type="button" value="Inditas" id="inditas">
+                        <input type="button" value="Inditas" id="inditas" class="fo-gomb">
                     </div>
+                </div>
+                <div id="tet-kijelzo">
+                    <h2 id="jatekos-zseton"></h2>
+                </div>
+                <div id="nyeremeny">
+                    <h2 id="aktualis-nyeremeny"></h2>
+                    <input type="button" value="Kivétel" id="kivetel" class="fo-gomb">
                 </div>
             </div>
             <div id="tablazat"></div>
