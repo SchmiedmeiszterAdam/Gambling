@@ -1,6 +1,6 @@
 var szamok = []
 var zsetonok = []
-var zsetonErtek = 0
+var zsetonErtek = 10
 var zsetonSzamlalo = 0
 var segedDivSzelesseg_magassaga = 5
 var tdSzelesseg = 100 / 12
@@ -18,7 +18,6 @@ $(function () {
     setTimeout(magassagAllitasTd, 100);
     segedDivekElhelyezese();
     $("#kezd").on("click", jatekKezdes)
-
 });
 
 function jatekKezdes() {
@@ -28,6 +27,7 @@ function jatekKezdes() {
     kepKattintMeghiv()
     $(".seged-div").on("click", ertekFelrakas)
     $(".szamTd").on("click", ertekFelrakas)
+    $(".tol-ig-gombok").on("click", ertekFelrakas2)
 }
 
 //-----------------------------------------------------------------------------------------------------//
@@ -51,20 +51,20 @@ function tablazatLetrehozas() {
         $("table").append("<tr id = tr-" + (i + 1) + ">");
     }
     for (let i = 0; i < 36; i += 3) {
-        $("table tr").eq(0).append("<td id = 'td" + szamok[i] + "' class = 'szamTd " + szamok[i] + "'>" + szamok[i + 1] + "</td");
+        $("table tr").eq(2).append("<td id = 'td" + szamok[i] + "' class = 'szamTd " + szamok[i] + "'>" + szamok[i + 1] + "</td");
         $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd " + szamok[i + 1] + "'>" + szamok[i + 2] + "</td");
-        $("table tr").eq(2).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd " + szamok[i + 2] + "'>" + szamok[i + 3] + "</td");
+        $("table tr").eq(0).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd " + szamok[i + 2] + "'>" + szamok[i + 3] + "</td");
     }
 
 }
 function szinezes() {
     for (let i = 0; i < 12; i += 2) {
-        $("#td" + i).css("background-color", "black")
-        $("#td" + (i + 12)).css("background-color", "black")
-        $("#td" + (i + 24)).css("background-color", "black")
-        $("#td" + (i + 1)).css("background-color", "red")
-        $("#td" + (i + 13)).css("background-color", "red")
-        $("#td" + (i + 25)).css("background-color", "red")
+        $("#td" + i).css("background-color", "red")
+        $("#td" + (i + 12)).css("background-color", "red")
+        $("#td" + (i + 24)).css("background-color", "red")
+        $("#td" + (i + 1)).css("background-color", "black")
+        $("#td" + (i + 13)).css("background-color", "black")
+        $("#td" + (i + 25)).css("background-color", "black")
     }
 
 }
@@ -104,14 +104,21 @@ function zsetonHelyezes() {
     var id = $(this).attr("id")
     zsetonErtek = id;
 }
-var i = 0;
 function ertekFelrakas() {
+    let szoveg = $(this).text()
     $(this).empty()
     $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
+    $(this).append(szoveg)
     var elemClass = $(this).attr('class').split(' ')[1];
     var gyerekek = $(this).children()
     var gyerekZsetonErtek = $(gyerekek).attr('class').split(' ')[1];
     zsetonok[elemClass] = gyerekZsetonErtek
+}
+function ertekFelrakas2() {
+    let szoveg = $(this).children("h2").text();
+    $(this).empty()
+    $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
+    $(this).append("<h2>"+szoveg+"</h2>")
 }
 //-----------------------------------------------------------------------------------------------------//
 
@@ -153,10 +160,10 @@ function ellenorzes() {
     let tettE = zsetonok[nyeroSzam - 1];
     console.log(tettE)
     if (tettE === undefined) {
-        alert("Vesztettél")
+        //alert("Vesztettél")
     }
     else {
-        alert("Nyertél")
+        //alert("Nyertél")
     }
 }
 
