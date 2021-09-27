@@ -31,30 +31,52 @@ function jatekInditas() {
     $("#aktualis-nyeremeny").text(jatekosTet)
     jatekosZsetonLevonas()
 }
-function jatekosZsetonLevonas() {
-    jatekosZseton -= jatekosTet
-    $("#jatekos-zseton").text(jatekosZseton)
+//-----------------------------------------------------------------------------------------------------//
+
+function tablazatLetrehozas() {
+    $("#tablazat").empty()
+    let idSzamalalo = 0;
+    $("#tablazat").append("<table></table>")
+    for (let i = 0; i < 5; i++) {
+        $("#tablazat table").append("<tr></tr>")
+        for (let j = 0; j < 5; j++) {
+            $("#tablazat table tr").eq(i).append("<td id =" + idSzamalalo + " class = 'tabla-td kartya'><img src='cash_out_kepek/hatlap.jpg' class='hatlap'></td>")
+            idSzamalalo++;
+        }
+    }
 }
+//-----------------------------------------------------------------------------------------------------//
+
 function ujJatek() {
     $("#uj-jatek").css("display", "none")
     $("#jatek-ter").css("opacity", "1")
     osszesGomb_Ki_Be_kapcsolas(false)
     bombaSzamVisszaallitas()
-
 }
 function bombaSzamVisszaallitas() {
     bombakSzama = 1
     $(".bomba-gomb").css("background-color", "white")
     $(".piros").css("background-color", "red")
+}
+function ujJatekMegjelenit() {
+    $("#uj-jatek").css("display", "block")
+    $("#jatek-ter").css("opacity", "0.2")
+}
+//-----------------------------------------------------------------------------------------------------//
 
+function bombaElhelyezes() {
+    bombaHely = []
+    for (let i = 0; i < bombakSzama; i++) {
+        var bombak = Math.floor(Math.random() * bombaHelyLehetosegek.length);
+        bombaHely[i] = bombaHelyLehetosegek[bombak]
+        bombaHelyLehetosegek.splice(bombak, 1)
+    }
+    console.log(bombaHely)
 }
-function nyeremenySzorzo() {
-    let szorzo = Math.floor(Math.random() * 6)
-    vegsoSzorzo = szorzo * 0.05
-    $(this).off()
-    nyeremeny += jatekosTet * vegsoSzorzo
-    $("#aktualis-nyeremeny").text(Math.floor(nyeremeny))
-}
+
+
+//-----------------------------------------------------------------------------------------------------//
+
 function tetMaxolas() {
     jatekosTet = jatekosZseton
     nyeremeny = jatekosTet
@@ -83,15 +105,6 @@ function ertekValtoztatas() {
         felezoKiBeKapcsolas(true)
     }
 }
-
-function felezoKiBeKapcsolas(be_ki){
-    $(".felezo").prop("disabled", be_ki)
-}
-function duplaKiBeKapcsolas(be_ki){
-    $(".dupla").prop("disabled", be_ki)
-}
-
-
 function ertekLekeresEllenorzes() {
     let ertek = $("#ertek").val()
     let jo = true
@@ -128,44 +141,36 @@ function ertekLekeresEllenorzes() {
         nyeremeny = jatekosTet
     }
 }
+//-----------------------------------------------------------------------------------------------------//
+
+function felezoKiBeKapcsolas(be_ki) {
+    $(".felezo").prop("disabled", be_ki)
+}
+function duplaKiBeKapcsolas(be_ki) {
+    $(".dupla").prop("disabled", be_ki)
+}
 function osszesGomb_Ki_Be_kapcsolas(be_ki) {
     $(".bomba-gomb").prop("disabled", be_ki)
     $("#inditas").prop("disabled", be_ki)
     $(".tet-gomb").prop("disabled", be_ki)
     $("#ertek").prop("disabled", be_ki)
 }
-function bombaLehetosegekFeltoltes() {
-    for (let i = 0; i < 25; i++) {
-        bombaHelyLehetosegek[i] = i
-    }
+//-----------------------------------------------------------------------------------------------------//
+
+function jatekosZsetonLevonas() {
+    jatekosZseton -= jatekosTet
+    $("#jatekos-zseton").text(jatekosZseton)
 }
-function tablazatLetrehozas() {
-    $("#tablazat").empty()
-    let idSzamalalo = 0;
-    $("#tablazat").append("<table></table>")
-    for (let i = 0; i < 5; i++) {
-        $("#tablazat table").append("<tr></tr>")
-        for (let j = 0; j < 5; j++) {
-            $("#tablazat table tr").eq(i).append("<td id =" + idSzamalalo + " class = 'tabla-td kartya'><img src='cash_out_kepek/hatlap.jpg' class='hatlap'></td>")
-            idSzamalalo++;
-        }
-    }
-}
+//-----------------------------------------------------------------------------------------------------//
+
 function bombaSzamKivalasztas() {
     bombakSzama = $(this).attr("id")
     console.log(bombakSzama)
     $(".bomba-gomb").css("background-color", "white")
     $(this).css("background-color", "red")
 }
-function bombaElhelyezes() {
-    bombaHely = []
-    for (let i = 0; i < bombakSzama; i++) {
-        var bombak = Math.floor(Math.random() * bombaHelyLehetosegek.length);
-        bombaHely[i] = bombaHelyLehetosegek[bombak]
-        bombaHelyLehetosegek.splice(bombak, 1)
-    }
-    console.log(bombaHely)
-}
+//-----------------------------------------------------------------------------------------------------//
+
 function ellenorzes() {
     let robban = false
     let id = parseInt($(this).attr("id"))
@@ -186,13 +191,28 @@ function ellenorzes() {
         $(this).append("<img src='cash_out_kepek/elolap.jpg' class='elolap'></img>")
     }
 }
-function ujJatekMegjelenit() {
-    $("#uj-jatek").css("display", "block")
-    $("#jatek-ter").css("opacity", "0.2")
+
+function nyeremenySzorzo() {
+    let szorzo = Math.floor(Math.random() * 6)
+    vegsoSzorzo = szorzo * 0.05
+    $(this).off()
+    nyeremeny += jatekosTet * vegsoSzorzo
+    $("#aktualis-nyeremeny").text(Math.floor(nyeremeny))
 }
+//-----------------------------------------------------------------------------------------------------//
+
 function forgat() {
     $(this).addClass("flip")
 }
+//-----------------------------------------------------------------------------------------------------//
+
+function bombaLehetosegekFeltoltes() {
+    for (let i = 0; i < 25; i++) {
+        bombaHelyLehetosegek[i] = i
+    }
+}
+//-----------------------------------------------------------------------------------------------------//
+
 function hoverAllitas() {
     let gomb = $(this).attr("id")
     if (gomb != bombakSzama) {

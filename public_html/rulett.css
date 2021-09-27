@@ -19,6 +19,17 @@ main{
 nav{
     position: absolute;
 }
+#asztal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    max-height: 100vh;
+}
+/*Kerék*/
 #kerek{
     position: relative;
     width: 30%;
@@ -30,23 +41,26 @@ nav{
     background-size: cover;
     background-repeat: no-repeat;
 }
-.kerekForgatas{
-    animation: forgat 15s ease-in-out forwards;
-}
-#gombok{
-    width: 40vw;
-    height: 20vh;
-    position: absolute;
-    top: calc(50% - 10vh);
-    left: calc(50% - 20vw);
+#golyo-tarolo{
+    width: fit-content;
+    height: 35%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    position: absolute;
+    left:calc(50% - 0.75vw);
+    bottom: 50%;
+    transform-origin: bottom;    
 }
-#kezd{
-    font-size: 3rem;
-    cursor: pointer;
+#golyo{
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    background: yellow;
 }
+/*------------------------------------*/
+
+
+/*Tábla*/
 table{
     border-collapse: collapse;
     position: relative;
@@ -86,16 +100,7 @@ td{
     width: 80%;
     height: 80%;
 }   
-#asztal{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    max-width: 100vw;
-    height: 100%;
-    max-height: 100vh;
-}
+
 .seged-div{
     width: 5%;
     position: absolute;    
@@ -105,25 +110,25 @@ td{
     background-size: 80% !important;
     background-repeat: no-repeat !important;
 }
+/*------------------------------------*/
 
-#golyo-tarolo{
-    width: fit-content;
-    height: 35%;
-    display: flex;
-    justify-content: flex-start;
+
+#gombok{
+    width: 40vw;
+    height: 20vh;
     position: absolute;
-    left:calc(50% - 0.75vw);
-    bottom: 50%;
-    /*background: red;*/
-    transform-origin: bottom;
-    
+    top: calc(50% - 10vh);
+    left: calc(50% - 20vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#golyo{
-    width: 1.5vw;
-    height: 1.5vw;
-    border-radius: 50%;
-    background: yellow;
+#kezd{
+    font-size: 3rem;
+    cursor: pointer;
 }
+
+/*------------------------------------*/
 @media screen and (max-width:800px){
     #asztal{
         flex-direction: column;

@@ -17,20 +17,6 @@ main{
     height: 100vh;
     max-height: 100vh;
 }
-#kartya{
-    width: 40vw;
-    height: 80vh;
-    background: pink;
-}
-#gep{
-    width: 30vw;
-    height: 60vh;
-    background: green;
-}
-#szamok{
-    height: 75vh;
-    width: 40vw;
-}
 nav{
     position: absolute;
     top: 20px;
@@ -43,6 +29,55 @@ li a{
     text-decoration: none;
     color: black;
 }
+#jatekTer{
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/*Gép*/
+#gep{
+    width: 30vw;
+    height: 60vh;
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 10%;
+}
+#kezdes{
+    position: absolute;
+    width: 100%;
+    max-width: 415px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    top: calc(50%-100px);
+    left: calc(50%-100px);
+}
+#szam-megjelenito{
+    font-size: 3rem;
+}
+/*------------------------------------*/
+
+/*Kártya*/
+
+#kartya{
+    width: 40vw;
+    height: 80vh;
+    background: pink;
+}
+
+#szamok{
+    height: 75vh;
+    width: 40vw;
+}
+
 table{
     width: 40vw;
     height: 100%;
@@ -59,41 +94,15 @@ tr{
     width: 8vw;
     height: 16vh;
 }
-#kezdes{
-    position: absolute;
-    width: 100%;
-    max-width: 415px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    top: calc(50%-100px);
-    left: calc(50%-100px);
+.volt{
+    background: red;
 }
+/*------------------------------------*/
+
+/*Gombok*/
 .gomb{
     font-size: 3em;
     cursor: pointer;
-}
-#gep{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 10%;
-}
-#jatekTer{
-    height: 100%;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-#szam-megjelenito{
-    font-size: 3rem;
-}
-.volt{
-    background: red;
 }
 #ujrakezdes{
     position: absolute;
@@ -112,6 +121,9 @@ tr{
     text-align: center;
     color: white;
 }
+/*------------------------------------*/
+
+/*Sebesség változtató nyilak*/
 #fel-nyil{
     top: 20%;
     left: calc(50% - 15px);
@@ -141,6 +153,7 @@ tr{
     align-items: center;
     justify-content: space-between;
 }
+/*------------------------------------*/
 @media screen and (max-width: 550px){
     main{
         flex-direction: column;

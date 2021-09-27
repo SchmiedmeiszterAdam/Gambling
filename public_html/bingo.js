@@ -8,9 +8,9 @@ var o_oszlop = [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75];
 var osszes_szam = [];
 var szam_mennyiseg = 75;
 var szerepelt_szamok = []
-var i =0;
+var i = 0;
 var jo = false;
-var sebesseg = 4000; 
+var sebesseg = 4000;
 
 var nyert;
 var szam;
@@ -19,10 +19,22 @@ var jatekos_tomb_szamlalo;
 var generalas;
 $(function () {
     szamKiosztas();
-    tablazatLetrehozas();    
+    tablazatLetrehozas();
     osszesSzamFeltoltes();
-    $("#kezd").on("click",jatekElkezdese)
+    $("#kezd").on("click", jatekElkezdese)
 });
+
+function jatekElkezdese() {
+    $("#kezdes").css("display", "none")
+    idozito();
+    $("#kezd").click(jatekElkezdese);
+    $("#igen").click(ujJatek);
+    $("td").click(ellenorzes);
+    $("#fel-nyil").click(sebessegNoveles);
+    $("#le-nyil").click(sebessegCsokkentes);
+}
+//-----------------------------------------------------------------------------------------------------//
+
 
 function szamKiosztas() {
     jatekos_tomb_szamlalo = 0;
@@ -53,18 +65,7 @@ function szamKiosztas() {
         jatekos_tomb_szamlalo++;
     }
 }
-
-
-
-function jatekElkezdese(){ 
-    $("#kezdes").css("display","none")       
-    idozito();
-    $("#kezd").click(jatekElkezdese);    
-    $("#igen").click(ujJatek);
-    $("td").click(ellenorzes);
-    $("#fel-nyil").click(sebessegNoveles);
-    $("#le-nyil").click(sebessegCsokkentes);
-}
+//-----------------------------------------------------------------------------------------------------//
 
 function tablazatLetrehozas() {
     $("table").empty();
@@ -76,76 +77,73 @@ function tablazatLetrehozas() {
         if (index % 5 === 0) {
             index = 0;
         }
-        $("table tr").eq(index).append("<td id = "+ i +">" + jatekos_szamjai[i] + "</td>");
+        $("table tr").eq(index).append("<td id = " + i + ">" + jatekos_szamjai[i] + "</td>");
         index++;
-    }    
+    }
 }
+//-----------------------------------------------------------------------------------------------------//
 
-function ellenorzes(){
+function ellenorzes() {
     var index = this.id;
     var ertek = jatekos_szamjai[index];
     for (let i = 0; i < szerepelt_szamok.length; i++) {
-        if(ertek === szerepelt_szamok[i]){
+        if (ertek === szerepelt_szamok[i]) {
             $(this).addClass("volt");
             jo = true;
         }
     }
-    if(szam2 !== ertek && !jo){
-        $("td").css("border","1px solid red");
+    if (szam2 !== ertek && !jo) {
+        $("td").css("border", "1px solid red");
     }
     setTimeout(function () {
-        $("td").css("border","1px solid black");
-      }, 2000);
+        $("td").css("border", "1px solid black");
+    }, 2000);
     jo = false;
-    if(szamol() === 25){
+    if (szamol() === 25) {
         setTimeout(function () {
             alert("Nyertél");
             uj();
-          }, 100);
-          nyert = true;
-          idozitoMegallitas();
+        }, 100);
+        nyert = true;
+        idozitoMegallitas();
     }
-    
+
 }
-function RandomSzamGeneralas(){
-    if(!nyert){
+function RandomSzamGeneralas() {
+    if (!nyert) {
         szam = Math.floor(Math.random() * szam_mennyiseg);
         szam2 = osszes_szam[szam];
         szerepelt_szamok[i] = szam2;
-        $("#szam-megjelenito").text(osszes_szam [szam]);
-        osszes_szam.splice(szam,1);
+        $("#szam-megjelenito").text(osszes_szam[szam]);
+        osszes_szam.splice(szam, 1);
         szam_mennyiseg--;
         i++;
     }
-    if(osszes_szam.length === 0){
+    if (osszes_szam.length === 0) {
         alert("Vesztettél")
         idozitoMegallitas()
         uj()
     }
-    console.log(sebesseg)        
+    console.log(sebesseg)
 }
-function idozito(){
-    generalas = setInterval(RandomSzamGeneralas,sebesseg);
+//-----------------------------------------------------------------------------------------------------//
+
+function idozito() {
+    generalas = setInterval(RandomSzamGeneralas, sebesseg);
 }
-function idozitoMegallitas(){
+function idozitoMegallitas() {
     clearInterval(generalas);
 }
+//-----------------------------------------------------------------------------------------------------//
 
-function szamol(){
-    var db = $(".volt").length;
-    return db;
-}
-
-function osszesSzamFeltoltes(){
+function osszesSzamFeltoltes() {
     osszes_szam = [];
     for (let i = 1; i < 76; i++) {
-        osszes_szam [i-1] = i;
+        osszes_szam[i - 1] = i;
     }
     szerepelt_szamok = [];
 }
-function uj(){
-    $("#ujrakezdes").css("display","flex");
-}
+//-----------------------------------------------------------------------------------------------------//
 
 function keveres(tomb) {
     var currentIndex = tomb.length, randomIndex;
@@ -161,28 +159,40 @@ function keveres(tomb) {
 
     return tomb;
 }
-function ujJatek(){
-    $("#ujrakezdes").css("display","none");
+//-----------------------------------------------------------------------------------------------------//
+
+function ujJatek() {
+    $("#ujrakezdes").css("display", "none");
     $("#szam-megjelenito").text("");
     nyert = false;
     jatekos_tomb_szamlalo = 0;
     idozitoMegallitas();
     jatekElkezdese();
 }
+function uj() {
+    $("#ujrakezdes").css("display", "flex");
+}
+//-----------------------------------------------------------------------------------------------------//
 
-function sebessegNoveles(){
-    if(sebesseg > 2000){
+function sebessegNoveles() {
+    if (sebesseg > 2000) {
         sebesseg -= 500;
         idozitoMegallitas();
         idozito();
     }
     console.log(sebesseg);
 }
-function sebessegCsokkentes(){
-    if(sebesseg < 8000){
+function sebessegCsokkentes() {
+    if (sebesseg < 8000) {
         sebesseg += 500;
         idozitoMegallitas();
         idozito();
     }
     console.log(sebesseg);
+}
+//-----------------------------------------------------------------------------------------------------//
+
+function szamol() {
+    var db = $(".volt").length;
+    return db;
 }

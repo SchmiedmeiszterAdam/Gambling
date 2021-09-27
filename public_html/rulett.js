@@ -9,6 +9,7 @@ var nyeroSzam
 const kerekSzamokSorrendje = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 
 $(window).bind("resize", magassagAllitasTd)
+
 $(function () {
     szamokLetrehozasa()
     tablazatLetrehozas()
@@ -20,7 +21,6 @@ $(function () {
 
 });
 
-
 function jatekKezdes() {
     $("#gombok").css("display", "none")
     kerekForgatas()
@@ -29,28 +29,17 @@ function jatekKezdes() {
     $(".seged-div").on("click", ertekFelrakas)
     $(".szamTd").on("click", ertekFelrakas)
 }
+
+//-----------------------------------------------------------------------------------------------------//
+
 function kerekForgatas() {
-    RandomRotate("kerek", "1", "0")
-    RandomRotate("golyo-tarolo", "-2", "1")
+    randomForgatas("kerek", "1", "0")
+    randomForgatas("golyo-tarolo", "-2", "1")
     nyertSzamMeghatarozas()
 }
-function ellenorzes() {
-    let tettE = zsetonok[nyeroSzam - 1];
-    console.log(tettE)
-    if (tettE === undefined) {
-        alert("Vesztettél")
-    }
-    else {
-        alert("Nyertél")
-    }
-}
 
-function magassagAllitasTd() {
-    var cw = $('td').width();
-    $('td').css({ 'height': cw + 'px' });
-    var cw = $('.seged-div').width();
-    $('.seged-div').css({ 'height': cw + 'px' });
-}
+//-----------------------------------------------------------------------------------------------------//
+
 function szamokLetrehozasa() {
     for (let i = 0; i < 37; i++) {
         szamok[i] = i;
@@ -79,6 +68,9 @@ function szinezes() {
     }
 
 }
+
+//-----------------------------------------------------------------------------------------------------//
+
 function segedDivekLetrhozasa() {
     for (let i = 0; i < 22; i++) {
         $("table").append("<div class = 'seged-div " + (segedDivClass + i) + " seged-" + i + "' id = " + i + "></div>")
@@ -100,6 +92,9 @@ function segedDivekElhelyezese() {
         szorzo++;
     }
 }
+
+//-----------------------------------------------------------------------------------------------------//
+
 function kepKattintMeghiv() {
     $("#zsetonok img").on("click", zsetonHelyezes)
 }
@@ -115,30 +110,24 @@ function ertekFelrakas() {
     $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
     var elemClass = $(this).attr('class').split(' ')[1];
     var gyerekek = $(this).children()
-
     var gyerekZsetonErtek = $(gyerekek).attr('class').split(' ')[1];
-
     zsetonok[elemClass] = gyerekZsetonErtek
-
 }
+//-----------------------------------------------------------------------------------------------------//
 
-
-
-
-function AnimateRotate(angle, elem) {
+function elemForgatas(angle, elem) {
     var $elem = $('#' + elem);
 
     $({ deg: 0 }).animate({ deg: angle }, {
         duration: 10000,
         step: function (now) {
-
             $elem.css({
                 transform: 'rotate(' + now + 'deg)'
             });
         }
     });
 }
-function RandomRotate(elem, irany, eltarol) {
+function randomForgatas(elem, irany, eltarol) {
     const szamFok = 360 / 37
     let random = Math.floor(Math.random() * 37);
     let tol = random * szamFok
@@ -150,12 +139,31 @@ function RandomRotate(elem, irany, eltarol) {
         kerekEltolas = random
     }
 
-
-    AnimateRotate(forgat, elem);
+    elemForgatas(forgat, elem);
 }
+//-----------------------------------------------------------------------------------------------------//
+
 var kerekEltolas
 var golyoEltolas
 function nyertSzamMeghatarozas() {
     nyeroSzam = kerekSzamokSorrendje[golyoEltolas]
     console.log(nyeroSzam)
+}
+function ellenorzes() {
+    let tettE = zsetonok[nyeroSzam - 1];
+    console.log(tettE)
+    if (tettE === undefined) {
+        alert("Vesztettél")
+    }
+    else {
+        alert("Nyertél")
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------//
+function magassagAllitasTd() {
+    var cw = $('td').width();
+    $('td').css({ 'height': cw + 'px' });
+    var cw = $('.seged-div').width();
+    $('.seged-div').css({ 'height': cw + 'px' });
 }
