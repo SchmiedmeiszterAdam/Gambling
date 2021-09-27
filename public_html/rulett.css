@@ -108,40 +108,21 @@ td{
 
 #golyo-tarolo{
     width: fit-content;
-    height: 45%;
+    height: 35%;
     display: flex;
     justify-content: flex-start;
     position: absolute;
-    left:calc(50% - 10px);
+    left:calc(50% - 0.75vw);
     bottom: 50%;
     /*background: red;*/
     transform-origin: bottom;
     
 }
 #golyo{
-    width: 20px;
-    height: 20px;
+    width: 1.5vw;
+    height: 1.5vw;
     border-radius: 50%;
     background: yellow;
-
-}
-.golyo-forgat{
-    animation: golyo-forgatas 15s ease-in-out forwards;
-}
-@keyframes forgat{    
-    0%   { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(4900deg); }
-}
-@keyframes golyo-forgatas {
-    0%{
-        transform: rotate(0deg);
-        height: 45%;
-    }
-    100%{
-        transform:rotate(-10080deg);
-        height: 35%;
-
-    }
 }
 @media screen and (max-width:800px){
     #asztal{

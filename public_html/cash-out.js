@@ -31,7 +31,7 @@ function jatekInditas() {
     $("#aktualis-nyeremeny").text(jatekosTet)
     jatekosZsetonLevonas()
 }
-function jatekosZsetonLevonas(){
+function jatekosZsetonLevonas() {
     jatekosZseton -= jatekosTet
     $("#jatekos-zseton").text(jatekosZseton)
 }
@@ -51,73 +51,69 @@ function bombaSzamVisszaallitas() {
 function nyeremenySzorzo() {
     let szorzo = Math.floor(Math.random() * 6)
     vegsoSzorzo = szorzo * 0.05
-    console.log("Végső sz: " + vegsoSzorzo, " Nyeremény "+nyeremeny)
     $(this).off()
     nyeremeny += jatekosTet * vegsoSzorzo
-    console.log("Játékos tét" + jatekosTet," Nyeremény "+nyeremeny)
     $("#aktualis-nyeremeny").text(Math.floor(nyeremeny))
 }
 function tetMaxolas() {
     jatekosTet = jatekosZseton
     nyeremeny = jatekosTet
     $("#ertek").val(jatekosTet)
-    $(".felezo").prop("disabled", false)
-    $(".dupla").prop("disabled", true)
+    felezoKiBeKapcsolas(false)
+    duplaKiBeKapcsolas(true)
 }
 function ertekValtoztatas() {
     let gomb = $(this).attr("id")
     let ertek = $("#ertek").val()
 
     if (ertek <= 100 && gomb === "0.5") {
-        $(".felezo").prop("disabled", true)
+        felezoKiBeKapcsolas(true)
     } else {
         jatekosTet = gomb * ertek
         nyeremeny = jatekosTet
         $("#ertek").val(jatekosTet)
-        $(".felezo").prop("disabled", false)
+        felezoKiBeKapcsolas(false)
     }
-    if (jatekosZseton < jatekosTet) {
-        $("#max").prop("disabled", true)
-        $(".dupla").prop("disabled", true)
-        $("#inditas").prop("disabled", true)
-    }
-    else if (jatekosTet > jatekosZseton / 2) {
-        $(".dupla").prop("disabled", true)
-        jo = false
-    }
-    else {
-        $("#max").prop("disabled", false)
-        $(".dupla").prop("disabled", false)
-        $("#inditas").prop("disabled", false)
+    if (jatekosTet > jatekosZseton / 2) {
+        duplaKiBeKapcsolas(true)
+    } else {
+        duplaKiBeKapcsolas(false)
     }
     if (jatekosTet < 200) {
-        $(".felezo").prop("disabled", true)
+        felezoKiBeKapcsolas(true)
     }
 }
+
+function felezoKiBeKapcsolas(be_ki){
+    $(".felezo").prop("disabled", be_ki)
+}
+function duplaKiBeKapcsolas(be_ki){
+    $(".dupla").prop("disabled", be_ki)
+}
+
+
 function ertekLekeresEllenorzes() {
     let ertek = $("#ertek").val()
-    console.log(ertek)
     let jo = true
     if (ertek < 200) {
-        $(".felezo").prop("disabled", true)
+        felezoKiBeKapcsolas(true)
     }
     else {
-        $(".felezo").prop("disabled", false)
+        felezoKiBeKapcsolas(false)
     }
 
     if (jatekosZseton < ertek || ertek < 1) {
         $("#max").prop("disabled", true)
-        $(".dupla").prop("disabled", true)
+        duplaKiBeKapcsolas(true)
         $("#inditas").prop("disabled", true)
         jo = false
     }
     else if (ertek > jatekosZseton / 2) {
-        $(".dupla").prop("disabled", true)
-        jo = false
+        duplaKiBeKapcsolas(true)
     }
     else {
         $("#max").prop("disabled", false)
-        $(".dupla").prop("disabled", false)
+        duplaKiBeKapcsolas(false)
         $("#inditas").prop("disabled", false)
         jo = true
     }
@@ -128,7 +124,7 @@ function ertekLekeresEllenorzes() {
     else if (jo) {
         $("#ertek").css("border", "1px solid lightgray")
         $("#inditas").prop("disabled", false)
-        jatekosTet=ertek
+        jatekosTet = ertek
         nyeremeny = jatekosTet
     }
 }

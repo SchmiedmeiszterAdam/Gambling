@@ -5,7 +5,8 @@ var zsetonSzamlalo = 0
 var segedDivSzelesseg_magassaga = 5
 var tdSzelesseg = 100 / 12
 var segedDivClass = 36
-var golyoHely
+var nyeroSzam
+const kerekSzamokSorrendje = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 
 $(window).bind("resize", magassagAllitasTd)
 $(function () {
@@ -22,34 +23,24 @@ $(function () {
 
 function jatekKezdes() {
     $("#gombok").css("display", "none")
-    setTimeout(kerekForgatas, 10000)
-    szamAdas()
-    setTimeout(ellenorzes,9000)
+    kerekForgatas()
+    setTimeout(ellenorzes, 11000)
     kepKattintMeghiv()
     $(".seged-div").on("click", ertekFelrakas)
     $(".szamTd").on("click", ertekFelrakas)
 }
 function kerekForgatas() {
-    $("#kerek").addClass("kerekForgatas")
-    $("#golyo-tarolo").addClass("golyo-forgat")
-    setTimeout(function () {
-        $("#kerek").removeClass("kerekForgatas");
-        $("#gombok").css("display", "flex");
-        $("#golyo-tarolo").removeClass("golyo-forgat")
-    }
-        , 15000)
+    RandomRotate("kerek", "1", "0")
+    RandomRotate("golyo-tarolo", "-2", "1")
+    nyertSzamMeghatarozas()
 }
-function szamAdas() {
-    golyoHely = Math.floor(Math.random() * 37);
-    console.log(golyoHely)
-}
-function ellenorzes(){
-    tettE = zsetonok[golyoHely - 1];
+function ellenorzes() {
+    let tettE = zsetonok[nyeroSzam - 1];
     console.log(tettE)
-    if(tettE === undefined){
+    if (tettE === undefined) {
         alert("Vesztettél")
     }
-    else{
+    else {
         alert("Nyertél")
     }
 }
@@ -71,8 +62,8 @@ function tablazatLetrehozas() {
         $("table").append("<tr id = tr-" + (i + 1) + ">");
     }
     for (let i = 0; i < 36; i += 3) {
-        $("table tr").eq(0).append("<td id = 'td" + szamok[i] + "' class = 'szamTd " + szamok[i] + "'>" + szamok[i+1] + "</td");
-        $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd " + szamok[i+1] + "'>" + szamok[i + 2] + "</td");
+        $("table tr").eq(0).append("<td id = 'td" + szamok[i] + "' class = 'szamTd " + szamok[i] + "'>" + szamok[i + 1] + "</td");
+        $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd " + szamok[i + 1] + "'>" + szamok[i + 2] + "</td");
         $("table tr").eq(2).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd " + szamok[i + 2] + "'>" + szamok[i + 3] + "</td");
     }
 
@@ -129,5 +120,42 @@ function ertekFelrakas() {
 
     zsetonok[elemClass] = gyerekZsetonErtek
 
-    console.log(zsetonok)
+}
+
+
+
+
+function AnimateRotate(angle, elem) {
+    var $elem = $('#' + elem);
+
+    $({ deg: 0 }).animate({ deg: angle }, {
+        duration: 10000,
+        step: function (now) {
+
+            $elem.css({
+                transform: 'rotate(' + now + 'deg)'
+            });
+        }
+    });
+}
+function RandomRotate(elem, irany, eltarol) {
+    const szamFok = 360 / 37
+    let random = Math.floor(Math.random() * 37);
+    let tol = random * szamFok
+    var forgat = irany * 5040 + tol
+    if (eltarol === '1') {
+        golyoEltolas = random
+    }
+    else {
+        kerekEltolas = random
+    }
+
+
+    AnimateRotate(forgat, elem);
+}
+var kerekEltolas
+var golyoEltolas
+function nyertSzamMeghatarozas() {
+    nyeroSzam = kerekSzamokSorrendje[golyoEltolas]
+    console.log(nyeroSzam)
 }
