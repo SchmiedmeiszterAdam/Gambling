@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 *,
 *::before,
 *::after {
@@ -7,7 +9,11 @@
     padding: 0;
 }
 body{
-    background: darkgray;
+    background: url("bingo_kepek/hatter.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 main{
     display: flex;
@@ -41,12 +47,13 @@ li a{
 #gep{
     width: 30vw;
     height: 60vh;
-    background: green;
+    background: rgba(0, 128, 0, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     border-radius: 10%;
+    border: 1px solid;
 }
 #kezdes{
     position: absolute;
@@ -61,7 +68,8 @@ li a{
     left: calc(50%-100px);
 }
 #szam-megjelenito{
-    font-size: 3rem;
+    font-family: 'Roboto Slab', serif;
+    font-size: 300%;
 }
 /*------------------------------------*/
 
@@ -69,8 +77,9 @@ li a{
 
 #kartya{
     width: 40vw;
-    height: 80vh;
-    background: pink;
+    height: fit-content;
+    background: rgba(172, 150, 140, 0.9);
+    border-radius: 1.5%;
 }
 
 #szamok{
@@ -81,21 +90,23 @@ li a{
 table{
     width: 40vw;
     height: 100%;
-    border-collapse: collapse;
+    
 }
 td{
     border:1px solid;
     cursor: pointer;
     text-align: center;
     font-size: 2rem;
-
+    width: 20%;
+    font-family: 'Stick No Bills', sans-serif;
+    border-radius: 5%;
 }
 tr{
     width: 8vw;
     height: 16vh;
 }
 .volt{
-    background: red;
+    background: rgba(255, 0, 0, 0.432);
 }
 /*------------------------------------*/
 
