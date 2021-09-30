@@ -6,3 +6,25 @@
     margin: 0;
     padding: 0;
 }
+#proba{
+    height: 200vh;
+    background-color: red;
+    width: 70%;
+    margin: auto;
+}
+::-webkit-scrollbar{
+    width: 1.2em;
+}
+::-webkit-scrollbar-track{
+    background: black;
+    border-radius: 100vw;
+    margin-block: 0.5em;
+}
+::-webkit-scrollbar-thumb{
+    background: darkgray;
+    border-radius: 100vw;
+    border: .25em solid black;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: gray;
+}

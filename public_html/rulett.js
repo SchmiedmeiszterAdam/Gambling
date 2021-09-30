@@ -2,10 +2,11 @@ var szamok = []
 var zsetonok = []
 var zsetonErtek = 10
 var zsetonSzamlalo = 0
-var segedDivSzelesseg_magassaga = 5
+var segedDivSzelesseg_magassaga = 3
 var tdSzelesseg = 100 / 12
 var segedDivClass = 36
 var nyeroSzam
+var jatekosZseton = 1000;
 const kerekSzamokSorrendje = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 
 $(window).bind("resize", magassagAllitasTd)
@@ -18,6 +19,7 @@ $(function () {
     setTimeout(magassagAllitasTd, 100);
     segedDivekElhelyezese();
     $("#kezd").on("click", jatekKezdes)
+    $("#jatekos-zseton").text(jatekosZseton)
 });
 
 function jatekKezdes() {
@@ -33,7 +35,7 @@ function jatekKezdes() {
 //-----------------------------------------------------------------------------------------------------//
 
 function kerekForgatas() {
-    randomForgatas("kerek", "1", "0")
+    randomForgatas("kerek", "1")
     randomForgatas("golyo-tarolo", "-2", "1")
     nyertSzamMeghatarozas()
 }
@@ -55,18 +57,24 @@ function tablazatLetrehozas() {
         $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd " + szamok[i + 1] + "'>" + szamok[i + 2] + "</td");
         $("table tr").eq(0).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd " + szamok[i + 2] + "'>" + szamok[i + 3] + "</td");
     }
-
 }
 function szinezes() {
-    for (let i = 0; i < 12; i += 2) {
+    for (let i = 0; i < 10; i += 2) {
         $("#td" + i).css("background-color", "red")
-        $("#td" + (i + 12)).css("background-color", "red")
-        $("#td" + (i + 24)).css("background-color", "red")
         $("#td" + (i + 1)).css("background-color", "black")
-        $("#td" + (i + 13)).css("background-color", "black")
-        $("#td" + (i + 25)).css("background-color", "black")
     }
-
+    for (let i = 10; i < 17; i += 2) {
+        $("#td" + i).css("background-color", "black")
+        $("#td" + (i + 1)).css("background-color", "red")
+    }
+    for (let i = 18; i < 28; i += 2) {
+        $("#td" + i).css("background-color", "red")
+        $("#td" + (i + 1)).css("background-color", "black")
+    }
+    for (let i = 28; i < 36; i += 2) {
+        $("#td" + i).css("background-color", "black")
+        $("#td" + (i + 1)).css("background-color", "red")
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------//
@@ -78,7 +86,7 @@ function segedDivekLetrhozasa() {
 }
 function segedDivekElhelyezese() {
     var elsoHelye = tdSzelesseg - segedDivSzelesseg_magassaga / 2;
-    var magassag = tdSzelesseg + segedDivSzelesseg_magassaga * 3
+    var magassag = tdSzelesseg + segedDivSzelesseg_magassaga * 6.7
     for (let i = 0; i < 11; i++) {
         var tolas = elsoHelye + i * tdSzelesseg
         $(".seged-" + i + "").css("left", "" + tolas + "%")
@@ -105,20 +113,24 @@ function zsetonHelyezes() {
     zsetonErtek = id;
 }
 function ertekFelrakas() {
-    let szoveg = $(this).text()
-    $(this).empty()
     $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
-    $(this).append(szoveg)
     var elemClass = $(this).attr('class').split(' ')[1];
     var gyerekek = $(this).children()
     var gyerekZsetonErtek = $(gyerekek).attr('class').split(' ')[1];
     zsetonok[elemClass] = gyerekZsetonErtek
+    $(this).off()
+    jatekosZsetonLevonas(gyerekZsetonErtek)
 }
 function ertekFelrakas2() {
     let szoveg = $(this).children("h2").text();
     $(this).empty()
     $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
-    $(this).append("<h2>"+szoveg+"</h2>")
+    $(this).append("<h2>" + szoveg + "</h2>")
+}
+
+function jatekosZsetonLevonas(zseton){
+    jatekosZseton -= zseton
+    $("#jatekos-zseton").text(jatekosZseton)
 }
 //-----------------------------------------------------------------------------------------------------//
 
@@ -142,15 +154,10 @@ function randomForgatas(elem, irany, eltarol) {
     if (eltarol === '1') {
         golyoEltolas = random
     }
-    else {
-        kerekEltolas = random
-    }
-
     elemForgatas(forgat, elem);
 }
 //-----------------------------------------------------------------------------------------------------//
 
-var kerekEltolas
 var golyoEltolas
 function nyertSzamMeghatarozas() {
     nyeroSzam = kerekSzamokSorrendje[golyoEltolas]

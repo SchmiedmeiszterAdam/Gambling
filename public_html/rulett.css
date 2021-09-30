@@ -107,15 +107,13 @@ td{
 }   
 
 .seged-div{
-    width: 5%;
+    width: 3%;
     position: absolute;
     border: 1px solid gray;
+    cursor: cell;
 }
 .seged-div img{
-    width: 80%;
-    position: absolute;
-    top: 10%;
-    left: 10%;
+    width: 100%;
 }
 .seged-div,tr>td{
     background-position: center !important;
@@ -178,13 +176,23 @@ td{
 }
 /*------------------------------------*/
 
+/*Zseton kijelző*/
+#zseton-kijelzo{
+    width: 30%;
+    height: fit-content;
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    text-align: center;
+}
+/*------------------------------------*/
 
 #gombok{
-    width: 40vw;
-    height: 20vh;
+    width: fit-content;
+    height: fit-content;
     position: absolute;
-    top: calc(50% - 10vh);
-    left: calc(50% - 20vw);
+    top: 10%;
+    left: calc(50% - 113.42px /2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,7 +223,6 @@ td{
     #nulla{
         font-size: 150%;
     }
-        
     
 }
 @media screen and (max-width:400px){
@@ -238,5 +245,17 @@ td{
         top: -55%;
         left: 40%;
         font-size: 100%;
+    }
+    #zseton-kijelzo{
+        width: 30%;
+        top: 5%;
+        left: 35%;
+    }
+    #golyo{
+        width: 4vw;
+        height: 4vw;
+    }
+    #golyo-tarolo{
+        left: calc(50% - 2vw);
     }
 }
