@@ -13,7 +13,7 @@ $(function () {
     $("#uj-jatek").click(jatekKezdete);
     $("#loves").click(lovesTortent);
     $("#porgetes").click(ujProgetes);
-    var cw = $('#fegyver-tarolo').width();
+    let cw = $('#fegyver-tarolo').width();
     $('#fegyver-tarolo').css({ 'height': cw + 'px' });
     setTimeout(magassagAllitas, 100);
 });
@@ -140,8 +140,8 @@ function startGombEltuntet() {
 //-----------------------------------------------------------------------------------------------------//
 
 function magassagAllitas() {
-    var cw = $('#fegyver-tarolo').width();
-    var ch = $('#fegyver-tarolo').height();
+    let cw = $('#fegyver-tarolo').width();
+    let ch = $('#fegyver-tarolo').height();
     $('#fegyver-tarolo').css({ 'width': ch + 'px' });
     $('#fegyver-tarolo').css({ 'height': cw + 'px' });
 }

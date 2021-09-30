@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@300&display=swap');
 *,
 *::before,
 *::after {
@@ -49,7 +50,6 @@ li a{
 /*------------------------------------*/
 
 /*Lyukak*/
-
 .lyuk{
     width: 18%;
     height: 18%;
@@ -103,15 +103,16 @@ li a{
     max-width: 300px;
 }
 .gomb{
-    max-width: 100%;
     width: 100%;
     font-size: 3em;
     cursor: pointer;
+    font-family: 'Stick No Bills', sans-serif;
 }
 .gomb2{
     width: 20vw;
     font-size: 4.8vw;
     cursor: pointer;
+    font-family: 'Stick No Bills', sans-serif;
 }
 /*------------------------------------*/
 
