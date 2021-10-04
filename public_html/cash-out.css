@@ -196,6 +196,19 @@ table tr td{
     aspect-ratio: 1/1;
     cursor: pointer;
 }
+td img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
 /*------------------------------------*/
 @media screen and (max-width:650px){
     #jatek-ter{
@@ -207,7 +220,7 @@ table tr td{
     }
     #adatok{
         width:100%;
-        height:20%;
+        height:35%;
     }
     #tartalom{
         width:100%;
@@ -216,6 +229,10 @@ table tr td{
     tr{
         height: calc(100% / 5 - 60px);
     }
+    #kivetel{
+        height:80%;
+    }
+
 
 }
 @media screen and (max-width:350px){

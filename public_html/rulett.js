@@ -85,21 +85,25 @@ function segedDivekLetrhozasa() {
     }
 }
 function segedDivekElhelyezese() {
-    var elsoHelye = tdSzelesseg - segedDivSzelesseg_magassaga / 2;
-    var magassag = tdSzelesseg + segedDivSzelesseg_magassaga * 6.7
-    for (let i = 0; i < 11; i++) {
-        var tolas = elsoHelye + i * tdSzelesseg
+    let elsoHelye = tdSzelesseg - segedDivSzelesseg_magassaga / 2;
+    let magassag = 100 / 3 - segedDivSzelesseg_magassaga * 2
+    let szorzo = 0;
+    let irany = "top"
+    let tolas
+    for (let i = 0; i < 23; i++) {
+        if (i > 10) {
+            irany = "bottom"
+            tolas = elsoHelye + szorzo * tdSzelesseg
+            szorzo++;
+        }
+        else{
+            tolas = elsoHelye + i * tdSzelesseg
+        }
         $(".seged-" + i + "").css("left", "" + tolas + "%")
-        $(".seged-" + i + "").css("top", "" + magassag + "%")
+        $(".seged-" + i + "").css(irany, "" + magassag + "%")
     }
-    var szorzo = 0;
-    for (let i = 11; i < 23; i++) {
-        var tolas = elsoHelye + szorzo * tdSzelesseg
-        $(".seged-" + i + "").css("left", "" + tolas + "%")
-        $(".seged-" + i + "").css({ "bottom": magassag + "%" })
-        szorzo++;
     }
-}
+
 
 //-----------------------------------------------------------------------------------------------------//
 
@@ -128,7 +132,7 @@ function ertekFelrakas2() {
     $(this).append("<h2>" + szoveg + "</h2>")
 }
 
-function jatekosZsetonLevonas(zseton){
+function jatekosZsetonLevonas(zseton) {
     jatekosZseton -= zseton
     $("#jatekos-zseton").text(jatekosZseton)
 }
@@ -178,6 +182,6 @@ function ellenorzes() {
 function magassagAllitasTd() {
     var cw = $('td').width();
     $('td').css({ 'height': cw + 'px' });
-    var cw = $('.seged-div').width();
-    $('.seged-div').css({ 'height': cw + 'px' });
+    var cw2 = $('.seged-div').width() + 2;
+    $('.seged-div').css({ 'height': cw2 + 'px' });
 }
