@@ -84,7 +84,7 @@ td{
     color: white;
     cursor: pointer;
     position: relative;
-    border: 1px solid white;
+    /*border: 1px solid white;*/
 }
 #zsetonok{
     width: 100%;
@@ -165,14 +165,16 @@ td{
     color: green;
     font-size: 200%;
 }
-.tol-ig-gombok{
+.tol-ig-gombok,#paros,#paratlan{
     position: relative;
 }
-.tol-ig-gombok img{
+.tol-ig-gombok img,#paros img,#paratlan img{
     height: 100%;
     width: auto;
     position: absolute;
     top: 0;
+}
+.tol-ig-gombok img{
     right: 10%;
 }
 /*------------------------------------*/
