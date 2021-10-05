@@ -165,10 +165,10 @@ td{
     color: green;
     font-size: 200%;
 }
-.tol-ig-gombok,#paros,#paratlan{
+.tol-ig-gombok,#paros,#paratlan,#piros,#fekete{
     position: relative;
 }
-.tol-ig-gombok img,#paros img,#paratlan img{
+.tol-ig-gombok img,#paros img,#paratlan img,#piros img,#fekete img{
     height: 100%;
     width: auto;
     position: absolute;

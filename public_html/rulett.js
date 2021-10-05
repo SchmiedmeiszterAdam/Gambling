@@ -5,6 +5,8 @@ let jatekosZseton = 1000
 const kerekSzamokSorrendje = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 let golyoEltolas
 let JatekosNyeremeny = 0
+const pirosak = []
+const feketek = []
 
 $(window).bind("resize", magassagAllitasTd)
 
@@ -21,12 +23,10 @@ $(function () {
 
 function jatekKezdes() {
     $("#gombok").css("display", "none")
-    setTimeout(kerekForgatas,5000)
+    setTimeout(kerekForgatas, 5000)
     setTimeout(ellenorzesek, 16000)
-    $("#zsetonok img").on("click", zsetonHelyezes)
-    $(".seged-div, #paros, #paratlan").on("click", zsetonFelhelyezes)
-    $(".szamTd").on("click", ertekFelrakas)
-    $(".tol-ig-gombok").on("click", ertekFelrakas2)
+    $("#zsetonok img").on("click", zsetonKivalasztas)
+    $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").on("click", ertekFelrakas)
 }
 
 //-----------------------------------------------------------------------------------------------------//
@@ -56,25 +56,20 @@ function tablazatLetrehozas() {
     }
 }
 function szinezes() {
-    for (let i = 0; i < 36; i+=2) {
-        if(i < 10){
-            szinezesSegito(i,"red","black")
+    for (let i = 0; i < 36; i += 2) {
+        if (i < 10 || i > 17 && i < 28) {
+            szinezesSegito(i, "red", "black", pirosak, feketek)
         }
-        else if(i > 10 && i < 17){
-            szinezesSegito(i,"black","red")
-        }
-        else if(i > 17 && i < 28){
-            szinezesSegito(i,"red","black")
-        }
-        else{
-            szinezesSegito(i,"black","red")
-
+        else {
+            szinezesSegito(i, "black", "red", feketek, pirosak)
         }
     }
 }
-function szinezesSegito(i,szin1,szin2){
+function szinezesSegito(i, szin1, szin2, tomb1, tomb2) {
     $("#td" + i).css("background-color", szin1)
+    tomb1.push(i + 1)
     $("#td" + (i + 1)).css("background-color", szin2)
+    tomb2.push(i + 2)
 }
 //-----------------------------------------------------------------------------------------------------//
 
@@ -109,33 +104,18 @@ function segedDivekElhelyezese() {
 
 //-----------------------------------------------------------------------------------------------------//
 
-function zsetonHelyezes() {
+function zsetonKivalasztas() {
     $("#zsetonok img").css("width", "10%")
     $(this).css("width", "11%")
     let id = $(this).attr("id")
     zsetonErtek = id
 }
-function zsetonFelhelyezes() {
-    if (jatekosZseton >= zsetonErtek) {
-        $(this).prepend("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
-        jatekosZsetonLevonas()
-    }
-    $(this).off()
-}
+
 function ertekFelrakas() {
     if (jatekosZseton >= zsetonErtek) {
         $(this).prepend("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
+        jatekosZsetonLevonas()
         $(this).off()
-        jatekosZsetonLevonas()
-    }
-}
-function ertekFelrakas2() {
-    if (jatekosZseton >= zsetonErtek) {
-        let szoveg = $(this).children("h2").text()
-        $(this).empty()
-        $(this).append("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
-        $(this).append("<h2>" + szoveg + "</h2>")
-        jatekosZsetonLevonas()
     }
 }
 
@@ -144,7 +124,7 @@ function jatekosZsetonLevonas() {
     jatekosZsetonKiiras()
 }
 
-function jatekosZsetonKiiras(){
+function jatekosZsetonKiiras() {
     $("#jatekos-zseton").text(jatekosZseton)
 }
 //-----------------------------------------------------------------------------------------------------//
@@ -162,7 +142,7 @@ function elemForgatas(angle, elem) {
     })
 }
 let szamlalo = 0
-function randomForgatas(elem, irany, ) {
+function randomForgatas(elem, irany,) {
     const szamFok = 360 / 37
     let random = Math.floor(Math.random() * 37)
     let tol = random * szamFok
@@ -183,56 +163,60 @@ function nyertSzamMeghatarozas() {
 function ellenorzesek() {
     ellenorzesTd()
     ellenorzesTolIg()
-    ellenorzesParspParatlan()
+    ellenorzesParospParatlan()
+    ellenorzesFeketePiros()
+    ellenorzesSegedDiv()
     nyeremenyHozzaAdas()
 }
 
 function ellenorzesTd() {
-    ellenorzesSeged("#td" + (nyeroSzam - 1),0)
+    felrakottZsetonLekeres("#td" + (nyeroSzam - 1), 0,36)
 }
 function ellenorzesTolIg() {
     if (nyeroSzam >= 1 && nyeroSzam <= 12) {
-        ellenorzesSeged("#elso-12",1)
+        felrakottZsetonLekeres("#elso-12", 1,3)
     }
     else if (nyeroSzam >= 13 && nyeroSzam <= 24) {
-        ellenorzesSeged("#masodik-12",1)
+        felrakottZsetonLekeres("#masodik-12", 1,3)
     }
-    else if(nyeroSzam >= 25 && nyeroSzam <= 36) {
-        ellenorzesSeged("#harmadik-12",1)
-    }
-}
-function ellenorzesSeged(elem,szam){
-    let gyerekek = $(elem).children()
-    let gyerekZsetonErtek
-    if (gyerekek.length > szam) {
-        gyerekZsetonErtek = parseInt($(gyerekek).attr('class').split(' ')[1])
-        JatekosNyeremeny += gyerekZsetonErtek
-        console.log(gyerekek,gyerekZsetonErtek,JatekosNyeremeny)
+    else if (nyeroSzam >= 25 && nyeroSzam <= 36) {
+        felrakottZsetonLekeres("#harmadik-12", 1,3)
     }
 }
-function ellenorzesParspParatlan(){
-    let gyerekZsetonErtek
-    if(nyeroSzam % 2 === 0 && nyeroSzam !== 0){
-        let gyerekek = $("#paros").children()
-        if (gyerekek.length > 1) {
-            gyerekZsetonErtek = parseInt($(gyerekek).attr('class').split(' ')[1])
-            JatekosNyeremeny += gyerekZsetonErtek
-        }
+function ellenorzesParospParatlan() {
+    if (nyeroSzam % 2 === 0 && nyeroSzam !== 0) {
+        felrakottZsetonLekeres("#paros",1,2)
     }
-    else if(nyeroSzam % 2 === 1) {
-        let gyerekek = $("#paratlan").children()
-        if (gyerekek.length > 1) {
-            gyerekZsetonErtek = parseInt($(gyerekek).attr('class').split(' ')[1])
-            JatekosNyeremeny += gyerekZsetonErtek
-        }
+    else if (nyeroSzam % 2 === 1) {
+        felrakottZsetonLekeres("#paratlan",1.2)
     }
 }
 
-function nyeremenyHozzaAdas(){
+function ellenorzesFeketePiros() {
+    if (pirosak.includes(nyeroSzam)) {
+        felrakottZsetonLekeres("#piros",1)
+    }
+    else if (feketek.includes(nyeroSzam)) {
+        felrakottZsetonLekeres("#fekete",1,2)
+    }
+}
+function ellenorzesSegedDiv(){
+    
+}
+function felrakottZsetonLekeres(elem,szam,szorzo) {
+    let gyerekek = $(elem).children()
+    if (gyerekek.length > szam) {
+        let gyerekZsetonErtek = parseInt($(gyerekek).attr('class').split(' ')[1])
+        JatekosNyeremeny += gyerekZsetonErtek * szorzo
+    }
+}
+
+function nyeremenyHozzaAdas() {
     jatekosZseton += JatekosNyeremeny
     jatekosZsetonKiiras()
 }
 //-----------------------------------------------------------------------------------------------------//
+
 function magassagAllitasTd() {
     let cw = $('td').width() + 0.01
     $('td').css({ 'height': cw + 'px' })
