@@ -23,8 +23,8 @@ $(function () {
 
 function jatekKezdes() {
     $("#gombok").css("display", "none")
-    setTimeout(kerekForgatas, 5000)
-    setTimeout(ellenorzesek, 16000)
+    setTimeout(kerekForgatas, 1000)
+    setTimeout(ellenorzesek, 1000)
     $("#zsetonok img").on("click", zsetonKivalasztas)
     $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").on("click", ertekFelrakas)
 }
@@ -76,7 +76,7 @@ function szinezesSegito(i, szin1, szin2, tomb1, tomb2) {
 function segedDivekLetrhozasa() {
     let segedDivClass = 36
     for (let i = 0; i < 22; i++) {
-        $("table").append("<div class = 'seged-div " + (segedDivClass + i) + " seged-" + i + "' id = " + i + "></div>")
+        $("table").append("<div class = 'seged-div seged-div-" + (segedDivClass + i) + " seged-" + i + "' id = " + i + "></div>")
     }
 }
 function segedDivekElhelyezese() {
@@ -156,7 +156,7 @@ function randomForgatas(elem, irany,) {
 //-----------------------------------------------------------------------------------------------------//
 
 function nyertSzamMeghatarozas() {
-    nyeroSzam = kerekSzamokSorrendje[golyoEltolas]
+    nyeroSzam =  kerekSzamokSorrendje[golyoEltolas]
     console.log(nyeroSzam)
 }
 
@@ -170,40 +170,90 @@ function ellenorzesek() {
 }
 
 function ellenorzesTd() {
-    felrakottZsetonLekeres("#td" + (nyeroSzam - 1), 0,36)
+    felrakottZsetonLekeres("#td" + (nyeroSzam - 1), 0, 36)
 }
 function ellenorzesTolIg() {
     if (nyeroSzam >= 1 && nyeroSzam <= 12) {
-        felrakottZsetonLekeres("#elso-12", 1,3)
+        felrakottZsetonLekeres("#elso-12", 1, 3)
     }
     else if (nyeroSzam >= 13 && nyeroSzam <= 24) {
-        felrakottZsetonLekeres("#masodik-12", 1,3)
+        felrakottZsetonLekeres("#masodik-12", 1, 3)
     }
     else if (nyeroSzam >= 25 && nyeroSzam <= 36) {
-        felrakottZsetonLekeres("#harmadik-12", 1,3)
+        felrakottZsetonLekeres("#harmadik-12", 1, 3)
     }
 }
 function ellenorzesParospParatlan() {
     if (nyeroSzam % 2 === 0 && nyeroSzam !== 0) {
-        felrakottZsetonLekeres("#paros",1,2)
+        felrakottZsetonLekeres("#paros", 1, 2)
     }
     else if (nyeroSzam % 2 === 1) {
-        felrakottZsetonLekeres("#paratlan",1.2)
+        felrakottZsetonLekeres("#paratlan", 1.2)
     }
 }
 
 function ellenorzesFeketePiros() {
     if (pirosak.includes(nyeroSzam)) {
-        felrakottZsetonLekeres("#piros",1)
+        felrakottZsetonLekeres("#piros", 1)
     }
     else if (feketek.includes(nyeroSzam)) {
-        felrakottZsetonLekeres("#fekete",1,2)
+        felrakottZsetonLekeres("#fekete", 1, 2)
     }
 }
-function ellenorzesSegedDiv(){
-    
+function ellenorzesSegedDiv() {
+    if (nyeroSzam % 3 === 1) {
+        let szam
+        let szam2
+        if (nyeroSzam === 1) {
+            szam2 = Math.floor(nyeroSzam / 3)
+        }
+        else if (nyeroSzam == 34) {
+            szam = Math.floor(nyeroSzam / 3 - 1)
+        }
+        else {
+            szam2 = Math.floor(nyeroSzam / 3)
+            szam = Math.floor(nyeroSzam / 3 - 1)
+        }
+        console.log(szam, szam2)
+    }
+    else if (nyeroSzam % 3 === 2) {
+        let szam
+        let szam2
+        let szam3
+        let szam4
+        if (nyeroSzam === 2) {
+            szam2 = Math.floor(nyeroSzam / 3)
+            szam3 = szam2 + 11
+        }
+        else if (nyeroSzam == 35) {
+            szam = Math.floor(nyeroSzam / 3 - 1)
+            szam4 = szam + 11
+        }
+        else {
+            szam = Math.floor(nyeroSzam / 3 - 1)
+            szam2 = Math.floor(nyeroSzam / 3)
+            szam3 = szam + 11
+            szam4 = szam2 + 11
+        }
+        console.log(szam, szam2, szam3, szam4)
+    }
+    else if (nyeroSzam % 3 === 0 && nyeroSzam !== 0) {
+        let szam
+        let szam2
+        if (nyeroSzam === 3) {
+            szam2 = Math.floor(nyeroSzam / 3 + 10)
+        }
+        else if (nyeroSzam == 36) {
+            szam = Math.floor(nyeroSzam / 3 - 1 - 9)
+        }
+        else {
+            szam2 = Math.floor(nyeroSzam / 3 + 10)
+            szam = Math.floor(nyeroSzam / 3 + 9)
+        }
+        console.log(szam, szam2)
+    }
 }
-function felrakottZsetonLekeres(elem,szam,szorzo) {
+function felrakottZsetonLekeres(elem, szam, szorzo) {
     let gyerekek = $(elem).children()
     if (gyerekek.length > szam) {
         let gyerekZsetonErtek = parseInt($(gyerekek).attr('class').split(' ')[1])
