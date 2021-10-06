@@ -23,8 +23,9 @@ $(function () {
 
 function jatekKezdes() {
     $("#gombok").css("display", "none")
-    setTimeout(kerekForgatas, 1000)
-    setTimeout(ellenorzesek, 1000)
+    setTimeout(kerekForgatas, 6000)
+    setTimeout(ellenorzesek, 17000)
+    setTimeout(tetrakasTiltasa,14000)
     $("#zsetonok img").on("click", zsetonKivalasztas)
     $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").on("click", ertekFelrakas)
 }
@@ -118,7 +119,9 @@ function ertekFelrakas() {
         $(this).off()
     }
 }
-
+function tetrakasTiltasa(){
+    $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").off()
+}
 function jatekosZsetonLevonas() {
     jatekosZseton -= zsetonErtek
     jatekosZsetonKiiras()
@@ -156,7 +159,7 @@ function randomForgatas(elem, irany,) {
 //-----------------------------------------------------------------------------------------------------//
 
 function nyertSzamMeghatarozas() {
-    nyeroSzam =  kerekSzamokSorrendje[golyoEltolas]
+    nyeroSzam = kerekSzamokSorrendje[golyoEltolas]
     console.log(nyeroSzam)
 }
 
@@ -188,7 +191,7 @@ function ellenorzesParospParatlan() {
         felrakottZsetonLekeres("#paros", 1, 2)
     }
     else if (nyeroSzam % 2 === 1) {
-        felrakottZsetonLekeres("#paratlan", 1.2)
+        felrakottZsetonLekeres("#paratlan", 1, 2)
     }
 }
 
