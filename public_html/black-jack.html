@@ -9,6 +9,8 @@
     <meta name="author" content="Schmiedmeiszter Ádám">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="black-jack.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="black-jack.js"></script>
 </head>
 
 <body>
@@ -17,14 +19,21 @@
             <li><a href="index.html">Vissza a Főoldalra</a></li>
         </nav>
         <div id="asztal">
+
             <div id="oszto">
-                <div id="pakli"></div>
+                <div id="pakli">
+
+                </div>
                 <div id="oszto-lapok"></div>
             </div>
             <div id="jatekos">
-                <div id="jatekoLapHely"></div>
-                <div id="jatekosZsetonHely"></div>
+                <div id="jatekos-laphely"></div>
+                <div id="jatekos-zsetonhely"></div>
+                <div id="gomb-tarolo">
+                    <input type="button" class="gombok" id="lapkero-gomb" value="Hit">
+                    <input type="button" class="gombok" id="megall-gomb" value="Megáll">
+                </div>
             </div>
-    </div>
+        </div>
     </main>
 </body>

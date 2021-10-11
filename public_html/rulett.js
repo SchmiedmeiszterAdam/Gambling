@@ -231,7 +231,7 @@ function ellenorzesParospParatlan() {
 
 function ellenorzesFeketePiros() {
     if (pirosak.includes(nyeroSzam)) {
-        felrakottZsetonLekeres("#piros", 1)
+        felrakottZsetonLekeres("#piros", 1, 2)
     }
     else if (feketek.includes(nyeroSzam)) {
         felrakottZsetonLekeres("#fekete", 1, 2)
