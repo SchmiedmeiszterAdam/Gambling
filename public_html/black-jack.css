@@ -36,25 +36,26 @@ nav{
     border-color: rgb(107,38,0);
     box-shadow: -10px 10px 40px black;
 }
-#oszto,#jatekos{
-    width: 70%;
-    height: 40%;
+#jatekos,#oszto{
+    width: fit-content;
+    height: fit-content;
 }
 #oszto{
     display: flex;
+    justify-content: center;
 }
 #pakli{
     width: 20%;
-    background-color: white;
+    /*background-color: white;*/
 }
 #oszto-lapok{
-    width: 80%;
-    background-color: red;
+    width: fit-content;
+    /* background-color: red; */
     display: flex;
-
+    justify-content: center;
 }
 #jatekos{
-    background-color: black;
+    /*background-color: black;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,5 +109,7 @@ nav{
 .gombok{
     width:50px;
     height:fit-content;
-    
+}
+#gomb-tarolo{
+    margin-top: 20px;
 }
