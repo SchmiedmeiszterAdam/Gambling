@@ -2,6 +2,7 @@ $(function () {
     const pakli = []
     const szinek = ["pick", "treff", "kor", "karo"]
     const ertekek = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    const aszok = []
     let jatekosLapok = 0;
     let osztoLapok = 0;
     pakliFeltoltes()
@@ -59,10 +60,20 @@ $(function () {
     function lapkeres() {
         kartyaAdas("#jatekos-laphely", jatekosLapok)
     }
+    
     function jatekosLapokEllenorzes() {
         if (jatekosLapok > 21) {
-            console.log("BUSTED")
-            $("#lapkero-gomb").prop("disabled", true)
+            let kartya = $($("#jatekos-laphely").children()).find('.ertek').text()
+            let ertek = kartya.split("")
+            let van = jQuery.inArray('A', ertek)
+            if(van >=0 && !(aszok.includes(van))){
+                aszok.push(van)
+                jatekosLapok -= 10
+            }
+            else{
+                console.log("BUSTED")
+                $("#lapkero-gomb").prop("disabled", true)
+            }
         }
         else if (jatekosLapok === 21) {
             console.log("BLACK JACK")
