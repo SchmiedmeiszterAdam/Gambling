@@ -44,15 +44,30 @@ nav{
     display: flex;
     justify-content: center;
 }
+#pakli-tarolo{
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top:calc(50% - 65px);
+    left: 10%;
+    background-color: white;
+    border-radius:  5px;
+}
 #pakli{
-    width: 20%;
-    /*background-color: white;*/
+    width: 65px;
+    height: 90px;
+    border-radius:  5px;
+}
+#pakli img{
+    width: 100%;
+    border-radius: 5px;
 }
 #oszto-lapok{
     width: fit-content;
     /* background-color: red; */
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 #jatekos{
     /*background-color: black;*/
@@ -63,6 +78,8 @@ nav{
 }
 #jatekos-laphely{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .kartya{
     min-width:65px;
@@ -112,4 +129,26 @@ nav{
 }
 #gomb-tarolo{
     margin-top: 20px;
+}
+#visszajelzo{
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top:0;
+    left:calc(40%);
+    display: grid;
+    place-items: center;
+}
+
+@media screen and (max-width:850px) {
+    #asztal{
+        width: 100%;
+    }
+}
+@media screen and (max-width:400px) {
+    #asztal{
+        height: 100%;
+        border-radius: 0;
+        border-width: 15px;
+    }
 }

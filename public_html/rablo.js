@@ -86,8 +86,8 @@ function tetCsokkentes() {
 
 function ellenorzes() {
 
-    if (nyert[0] === nyert[1] === nyert[2]) {
-        jatekosPontszam += tetekTomb[tetSzamlalo]
+    if (nyert[0] === nyert[1] && nyert[1] === nyert[2] && nyert[0] === nyert[2]) {
+        jatekosPontszam += (tetekTomb[tetSzamlalo] * 2)
     }
     else {
         jatekosPontszam -= tetekTomb[tetSzamlalo]
