@@ -29,10 +29,9 @@ function jatekKezdes() {
     setTimeout(kerekForgatas, 6000);
     setTimeout(ellenorzesek, 17000);
     setTimeout(tetrakasTiltasa, 14000);
+    idoKijelzes()
     $("#zsetonok img").on("click", zsetonKivalasztas);
-    $(
-        ".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete"
-    ).on("click", ertekFelrakas);
+    $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").on("click", ertekFelrakas);
 }
 
 //-----------------------------------------------------------------------------------------------------//
@@ -56,39 +55,9 @@ function tablazatLetrehozas() {
         $("table").append("<tr id = tr-" + (i + 1) + ">");
     }
     for (let i = 0; i < 36; i += 3) {
-        $("table tr")
-            .eq(2)
-            .append(
-                "<td id = 'td" +
-                szamok[i] +
-                "' class = 'szamTd " +
-                szamok[i] +
-                "'>" +
-                szamok[i + 1] +
-                "</td"
-            );
-        $("table tr")
-            .eq(1)
-            .append(
-                "<td id = 'td" +
-                szamok[i + 1] +
-                "' class = 'szamTd " +
-                szamok[i + 1] +
-                "'>" +
-                szamok[i + 2] +
-                "</td"
-            );
-        $("table tr")
-            .eq(0)
-            .append(
-                "<td id = 'td" +
-                szamok[i + 2] +
-                "' class = 'szamTd " +
-                szamok[i + 2] +
-                "'>" +
-                szamok[i + 3] +
-                "</td"
-            );
+        $("table tr").eq(2).append("<td id = 'td" + szamok[i] + "' class = 'szamTd " + szamok[i] + "'>" + szamok[i + 1] + "</td")
+        $("table tr").eq(1).append("<td id = 'td" + szamok[i + 1] + "' class = 'szamTd " + szamok[i + 1] + "'>" + szamok[i + 2] + "</td")
+        $("table tr").eq(0).append("<td id = 'td" + szamok[i + 2] + "' class = 'szamTd " + szamok[i + 2] + "'>" + szamok[i + 3] + "</td")
     }
 }
 function szinezes() {
@@ -111,15 +80,7 @@ function szinezesSegito(i, szin1, szin2, tomb1, tomb2) {
 function segedDivekLetrhozasa() {
     let segedDivClass = 36;
     for (let i = 0; i < 22; i++) {
-        $("table").append(
-            "<div class = 'seged-div seged-div-" +
-            (segedDivClass + i) +
-            " seged-" +
-            i +
-            "' id = " +
-            i +
-            "></div>"
-        );
+        $("table").append("<div class = 'seged-div seged-div-" + (segedDivClass + i) + " seged-" + i + "' id = " + i + "></div>")
     }
 }
 function segedDivekElhelyezese() {
@@ -154,13 +115,7 @@ function zsetonKivalasztas() {
 
 function ertekFelrakas() {
     if (jatekosZseton >= zsetonErtek) {
-        $(this).prepend(
-            "<img src = 'rulett_kepek/zseton" +
-            zsetonErtek +
-            ".png' class='beillesztett-zseton " +
-            zsetonErtek +
-            "'>"
-        );
+        $(this).prepend("<img src = 'rulett_kepek/zseton" + zsetonErtek + ".png' class='beillesztett-zseton " + zsetonErtek + "'>")
         jatekosZsetonLevonas();
         $(this).off();
     }
@@ -185,9 +140,7 @@ function kattintottBeallitas(elemNev) {
     }
 }
 function tetrakasTiltasa() {
-    $(
-        ".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete"
-    ).off();
+    $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").off();
 }
 function jatekosZsetonLevonas() {
     jatekosZseton -= zsetonErtek;
@@ -205,7 +158,7 @@ function elemForgatas(angle, elem) {
     $({ deg: 0 }).animate(
         { deg: angle },
         {
-            duration: 10000,
+            duration: 11000,
             step: function (now) {
                 $elem.css({
                     transform: "rotate(" + now + "deg)",
@@ -219,7 +172,7 @@ function randomForgatas(elem, irany) {
     const szamFok = 360 / 37;
     let random = Math.floor(Math.random() * 37);
     let tol = random * szamFok;
-    let forgat = irany * 5040 + tol;
+    let forgat = irany * 4320 + tol;
     if (szamlalo === 1) {
         golyoEltolas = random;
     }
@@ -363,6 +316,20 @@ function nyeremenyHozzaAdas() {
 }
 //-----------------------------------------------------------------------------------------------------//
 
+function idoKijelzes(){
+    let ido = 14
+    let idoIras = setInterval(function(){
+        console.log(ido)
+        $("#tet-ido-kijelzo").text("A fogadás lezárul " + ido + " másodperc múlva")
+        ido--
+        if(ido === -1){
+            clearInterval(idoIras)
+            $("#tet-ido-kijelzo").text("A fogadás lezárult!")
+        }
+    },1000)
+}
+
+//-----------------------------------------------------------------------------------------------------//
 function magassagAllitasTd() {
     let cw = $("td").width() + 0.01;
     $("td").css({ height: cw + "px" });

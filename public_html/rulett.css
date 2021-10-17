@@ -198,6 +198,18 @@ td{
     cursor: pointer;
 }
 
+/*Idő kijelzo*/
+#ido-kijelzo-tarolo{
+    position: absolute;
+    top: -70%;
+    width: 100%;
+    height: fit-content;
+}
+#tet-ido-kijelzo{
+    font-size: 1.5em;
+    margin: auto;
+    width: fit-content;
+}
 /*------------------------------------*/
 @media screen and (max-width:800px){
     #asztal{
@@ -253,5 +265,8 @@ td{
     }
     #golyo-tarolo{
         left: calc(50% - 2vw);
+    }
+    #ido-kijelzo-tarolo{
+        top: -90%;
     }
 }
