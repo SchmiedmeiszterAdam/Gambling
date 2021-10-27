@@ -18,7 +18,6 @@ $(function () {
     jatekosZsetonKiiras()
     $(".tet-max").on("click", tetMaxolas)
 });
-
 function jatekInditas() {
     $("#kivetel").on("click", nyeremenyKivetel)
     $("#kivetel").prop("disabled", false)
@@ -27,9 +26,10 @@ function jatekInditas() {
     bombaElhelyezes()
     $(".kartya").on("click", forgat)
     $("td").on("click", ellenorzes)
-    osszesGomb_Ki_Be_kapcsolas(true)
     $("#aktualis-nyeremeny").text(jatekosTet)
+    ertekLekeresEllenorzes()
     jatekosZsetonLevonas()
+    osszesGomb_Ki_Be_kapcsolas(true)
     nyeremeny = jatekosTet
 }
 //-----------------------------------------------------------------------------------------------------//
@@ -53,6 +53,8 @@ function ujJatek() {
     $("#jatek-ter").css("opacity", "1")
     osszesGomb_Ki_Be_kapcsolas(false)
     bombaSzamVisszaallitas()
+    $("#ertek").val(100)
+    jatekosTet = 100
 }
 function bombaSzamVisszaallitas() {
     bombakSzama = 1
@@ -87,7 +89,6 @@ function tetMaxolas() {
 function ertekValtoztatas() {
     let gomb = $(this).attr("id")
     let ertek = $("#ertek").val()
-
 
     if (ertek <= 100 && gomb === "0.5") {
         felezoKiBeKapcsolas(true)
