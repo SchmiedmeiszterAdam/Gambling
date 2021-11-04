@@ -1,12 +1,14 @@
-class Td {
+class Td extends rulettElem {
     constructor(elem, id) {
-        this.id = id
-        this.elem = elem
-        this.kattintott = false
+        super(elem, id)
         this.setSzin()
-        this.elem.on("click",()=>{
-            this.kattintasTrigger()
+        
+        $("#kezd").on("click", () => {
+            this.elem.on("click", () => {
+                this.kattintasTrigger()
+            })
         })
+
     }
     setSzin() {
         if ((((this.id > 9 && this.id < 18) || (this.id > 27 && this.id % 2 === 0)) && this.id % 2 === 0) || (((this.id < 10) || (this.id > 18 && this.id < 28)) && this.id % 2 === 1)) {

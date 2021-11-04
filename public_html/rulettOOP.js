@@ -4,18 +4,16 @@ $(function () {
     let nyeroSzam
     let jatekosZseton = 1000
     const kerekSzamokSorrendje = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
-    let JatekosNyeremeny = 0
-    const pirosak = []
-    const feketek = []
+    let JatekosNyeremeny
+    const pirosak = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 90, 32, 34, 36]
     let kattintottak = [false, false, false, false, false]
+    let szamlalo
 
-    tablazatLetrehozas()
-    segedDivekLetrhozasa()
-    setTimeout(magassagAllitasTd, 100)
-    segedDivekElhelyezese()
-    $("#kezd").on("click", jatekKezdes)
-    jatekosZsetonKiiras()
+    elsoLepesek()
+    //jatekKezdes()
     function jatekMenete() {
+        JatekosNyeremeny = 0
+        szamlalo = 0
         setTimeout(kerekForgatas, 6000)
         setTimeout(ellenorzesek, 17000)
         setTimeout(tetrakasTiltasa, 14000)
@@ -23,14 +21,17 @@ $(function () {
         idoKijelzes()
         $("#zsetonok img").on("click", zsetonKivalasztas)
         $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").on("click", ertekFelrakas)
-        JatekosNyeremeny = 0
-        szamlalo = 0
         kattintottak = [false, false, false, false, false]
     }
     function jatekKezdes() {
-        $("#gombok").css("display", "none")
         jatekMenete()
         setInterval(jatekMenete, 22000)
+    }
+    function elsoLepesek() {
+        tablazatLetrehozas()
+        segedDivekLetrhozasa()
+        setTimeout(magassagAllitasTd, 100)
+        jatekosZsetonKiiras()
     }
 
     //-----------------------------------------------------------------------------------------------------//
@@ -59,36 +60,17 @@ $(function () {
             else {
                 szuloElem = $("table tr").eq(0)
             }
-            const ujTd = $("<td>" + (i + 1) + "</td>").appendTo(szuloElem, i)
+            const ujTd = $("<td id=' td-" + (i + 1) + "' class = 'szamTd'>" + (i + 1) + "</td>").appendTo(szuloElem)
             const td = new Td(ujTd, i)
         }
     }
     //-----------------------------------------------------------------------------------------------------//
 
     function segedDivekLetrhozasa() {
-        let segedDivClass = 36
+        let szuloElem = $("table")
         for (let i = 0; i < 22; i++) {
-            $("table").append("<div class = 'seged-div seged-div-" + (segedDivClass + i) + " seged-" + i + "' id = " + i + "></div>")
-        }
-    }
-    function segedDivekElhelyezese() {
-        let segedDivSzelesseg_magassaga = 3
-        let tdSzelesseg = 100 / 12
-        let elsoHelye = tdSzelesseg - segedDivSzelesseg_magassaga / 2
-        let magassag = 100 / 3 - segedDivSzelesseg_magassaga * 2
-        let szorzo = 0
-        let irany = "bottom"
-        let tolas
-        for (let i = 0; i < 23; i++) {
-            if (i > 10) {
-                irany = "top"
-                tolas = elsoHelye + szorzo * tdSzelesseg
-                szorzo++
-            } else {
-                tolas = elsoHelye + i * tdSzelesseg
-            }
-            $(".seged-" + i + "").css("left", "" + tolas + "%")
-            $(".seged-" + i + "").css(irany, "" + magassag + "%")
+            const ujSegedDiv = $("<div class = 'seged-div'></div>").appendTo(szuloElem)
+            const div = new segedDiv(ujSegedDiv, i)
         }
     }
 
@@ -155,7 +137,6 @@ $(function () {
             }
         );
     }
-    let szamlalo = 0;
     function randomForgatas(elem, irany) {
         const szamFok = 360 / 37
         let random = Math.floor(Math.random() * 37)
@@ -199,6 +180,7 @@ $(function () {
     }
 
     function ellenorzesTd() {
+        console.log(this.felrakottErtek)
         felrakottZsetonLekeres("#td" + (nyeroSzam - 1), 0, 36)
     }
     function ellenorzesTolIg() {
@@ -226,7 +208,7 @@ $(function () {
     function ellenorzesFeketePiros() {
         if (pirosak.includes(nyeroSzam)) {
             felrakottZsetonLekeres("#piros", 1, 2);
-        } else if (feketek.includes(nyeroSzam)) {
+        } else if (nyeroSzam != 0) {
             felrakottZsetonLekeres("#fekete", 1, 2);
         }
     }
@@ -307,7 +289,6 @@ $(function () {
     function idoKijelzes() {
         let ido = 14
         let idoIras = setInterval(function () {
-            console.log(ido)
             $("#tet-ido-kijelzo").text("A fogadás lezárul " + ido + " másodperc múlva")
             ido--
             if (ido === -1) {
@@ -324,11 +305,14 @@ $(function () {
         let cw2 = $(".seged-div").width() + 2.01;
         $(".seged-div").css({ height: cw2 + "px" });
     }
-    $(window).on("kikapcsolas", (event) => {
-        let index = event.detail.id;
+    /*$(window).on("kikapcsolas", (event) => {
         this.kattintott = true
-        $(this).off('click')
-        console.log(index)
+        this.felrakottErtek = zsetonErtek
+        console.log(this.felrakottErtek)
+    })*/
+    $('.szamTd').on("click", "kikapcsolas", (event) => {
+        this.kattintott = true
+        console.log(this.felrakottErtek)
     })
 });
 

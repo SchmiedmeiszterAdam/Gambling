@@ -79,6 +79,7 @@ td{
     color: white;
     cursor: pointer;
     position: relative;
+    box-shadow:inset -1px -1px 0 0 white;
 }
 #zsetonok{
     width: 100%;
@@ -115,14 +116,14 @@ td{
     background-repeat: no-repeat !important;
 }
 #extrak{
-    width: 100%;
+    width: 100.01%;
     height: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    left: 0;
+    left: -1px;
     top: -35%;
 }
 #sor1,#sor2{
@@ -143,7 +144,7 @@ td{
 }
 #nulla,#sor2 > *,#sor1 > *{
     cursor: pointer;
-    height: 100%;
+    height: 100.03%;
     border: 1px solid white;
     display: flex;
     align-items: center;
@@ -182,7 +183,7 @@ td{
 }
 /*------------------------------------*/
 
-#gombok{
+/* #gombok{
     width: fit-content;
     height: fit-content;
     position: absolute;
@@ -195,7 +196,8 @@ td{
 #kezd{
     font-size: 3rem;
     cursor: pointer;
-}
+} */
+
 
 /*Idő kijelzo*/
 #ido-kijelzo-tarolo{
