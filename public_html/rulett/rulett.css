@@ -183,7 +183,7 @@ td{
 }
 /*------------------------------------*/
 
-/* #gombok{
+#gombok{
     width: fit-content;
     height: fit-content;
     position: absolute;
@@ -196,7 +196,7 @@ td{
 #kezd{
     font-size: 3rem;
     cursor: pointer;
-} */
+}
 
 
 /*Idő kijelzo*/

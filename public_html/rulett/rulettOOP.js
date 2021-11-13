@@ -6,12 +6,14 @@ $(function () {
     const kerekSzamokSorrendje = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
     let JatekosNyeremeny
     const pirosak = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 90, 32, 34, 36]
-    let kattintottak = [false, false, false, false, false]
+
     let szamlalo
+    const tdk = []
 
     elsoLepesek()
-    //jatekKezdes()
+    jatekKezdes()
     function jatekMenete() {
+        kattintottVisszaallit()
         JatekosNyeremeny = 0
         szamlalo = 0
         setTimeout(kerekForgatas, 6000)
@@ -21,7 +23,6 @@ $(function () {
         idoKijelzes()
         $("#zsetonok img").on("click", zsetonKivalasztas)
         $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").on("click", ertekFelrakas)
-        kattintottak = [false, false, false, false, false]
     }
     function jatekKezdes() {
         jatekMenete()
@@ -62,6 +63,7 @@ $(function () {
             }
             const ujTd = $("<td id=' td-" + (i + 1) + "' class = 'szamTd'>" + (i + 1) + "</td>").appendTo(szuloElem)
             const td = new Td(ujTd, i)
+            tdk.push(td)
         }
     }
     //-----------------------------------------------------------------------------------------------------//
@@ -76,6 +78,11 @@ $(function () {
 
     //-----------------------------------------------------------------------------------------------------//
 
+    function kattintottVisszaallit() {
+        for (let i = 0; i < tdk.length; i++) {
+            tdk[i].kattintott = false
+        }
+    }
     function zsetonKivalasztas() {
         $("#zsetonok img").css("width", "10%")
         $(this).css("width", "11%")
@@ -89,26 +96,8 @@ $(function () {
             jatekosZsetonLevonas()
             $(this).off()
         }
-        kattintottBeallitas(this)
     }
-    function kattintottBeallitas(elemNev) {
-        let nev = $(elemNev).attr("class").split(" ")[0]
-        if (nev === "szamTd") {
-            kattintottak[0] = true
-        }
-        if (nev === "seged-div") {
-            kattintottak[1] = true
-        }
-        if (nev === "tol-ig-gombok") {
-            kattintottak[2] = true
-        }
-        if (nev === "paros-paratlan") {
-            kattintottak[3] = true
-        }
-        if (nev === "piros-fekete") {
-            kattintottak[4] = true
-        }
-    }
+
     function tetrakasTiltasa() {
         $(".seged-div, #paros, #paratlan, .szamTd, .tol-ig-gombok, #piros, #fekete").off()
     }
@@ -156,32 +145,20 @@ $(function () {
     }
 
     function ellenorzesek() {
-        if (kattintottak[0] === true) {
-            ellenorzesTd()
-            console.log("TD")
-        }
-        if (kattintottak[1] === true) {
-            ellenorzesSegedDiv()
-            console.log("seged")
-        }
-        if (kattintottak[2] === true) {
-            ellenorzesTolIg()
-            console.log("tol")
-        }
-        if (kattintottak[3] === true) {
-            ellenorzesParospParatlan()
-            console.log("paros")
-        }
-        if (kattintottak[4] === true) {
-            ellenorzesFeketePiros()
-            console.log("piros")
-        }
+        console.log(tdk[nyeroSzam - 1])
+        console.log(tdk[nyeroSzam - 1].felrakottErtek)
+        ellenorzesTd()
+        ellenorzesSegedDiv()
+        ellenorzesTolIg()
+        ellenorzesParospParatlan()
+        ellenorzesFeketePiros()
         nyeremenyHozzaAdas()
     }
 
     function ellenorzesTd() {
-        console.log(this.felrakottErtek)
-        felrakottZsetonLekeres("#td" + (nyeroSzam - 1), 0, 36)
+        if (tdk[nyeroSzam - 1].kattintott) {
+            JatekosNyeremeny += tdk[nyeroSzam - 1].felrakottErtek * 36
+        }
     }
     function ellenorzesTolIg() {
         if (nyeroSzam >= 1 && nyeroSzam <= 12) {
@@ -213,6 +190,8 @@ $(function () {
         }
     }
     function ellenorzesSegedDiv() {
+        // console.log($(".seged-div").closest('#td-'+(nyeroSzam-1)))
+        // $(".seged-div").closest('#td-'+(nyeroSzam-1)).css("border","1px solid yellow")
         const szorzo = 8;
         const zsetonSorszam = 0;
         if (nyeroSzam % 3 === 1) {
@@ -305,14 +284,9 @@ $(function () {
         let cw2 = $(".seged-div").width() + 2.01;
         $(".seged-div").css({ height: cw2 + "px" });
     }
-    /*$(window).on("kikapcsolas", (event) => {
-        this.kattintott = true
-        this.felrakottErtek = zsetonErtek
-        console.log(this.felrakottErtek)
-    })*/
-    $('.szamTd').on("click", "kikapcsolas", (event) => {
-        this.kattintott = true
-        console.log(this.felrakottErtek)
+    $(window).on("kikapcsolas", (event) => {
+        event.detail.kattintott = true
+        event.detail.felrakottErtek = zsetonErtek
     })
 });
 

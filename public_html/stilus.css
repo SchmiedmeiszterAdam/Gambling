@@ -5,11 +5,11 @@ body{
 }
 main{
     width: 100%;
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas:
-    "n"
-    "j";
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .jatek,body{    
@@ -25,17 +25,16 @@ main{
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    grid-area: "j";
-    max-width: 100vw;
+    max-width: 2000px;
 }
 .jatek{
     min-width: 200px;
-    flex: calc(25% - 20px);
+    min-height: 360px;
     text-align: center;
-    min-height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: calc(25% - 20px);
     cursor: pointer;
     margin: 10px;   
     font-weight: bold;
@@ -76,7 +75,7 @@ main{
 /*Navigáció*/
 nav{
     height: 10vh;
-    grid-area: "n";
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -97,10 +96,12 @@ nav>ul a{
 }
 #ul-1{
     max-width: 300px;
+    color: white;
 }
 #ul-2{
     max-width: 200px;
     padding-right: 4vw;
+    color: black;
 }
 /*------------------------------------*/
 
